@@ -4,11 +4,12 @@
  * @Author: zhangguian
  * @Date: 2021-09-26 20:29:55
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-09-26 21:17:48
+ * @LastEditTime: 2021-10-02 08:24:13
 -->
 <template>
   <div>
     <canvas id="canvas" :width="contnetWidth" :height="contentHeight"></canvas>
+    123
   </div>
 </template>
 

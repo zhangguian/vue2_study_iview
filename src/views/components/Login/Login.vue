@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-09-26 15:10:48
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-09-26 20:13:00
+ * @LastEditTime: 2021-10-02 08:25:42
 -->
 <template>
   <div class="login">
@@ -15,7 +15,7 @@
           <TabPane label="账号密码登录">
             <login-account></login-account>
           </TabPane>
-          <TabPane label="验证码登录" >标签二的内容</TabPane>
+          <TabPane label="验证码登录" >标签二的内容133</TabPane>
           <TabPane label="滑块登录">标签三的内容</TabPane>
         </Tabs>
         <FormItem>
