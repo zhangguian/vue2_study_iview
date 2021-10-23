@@ -1,3 +1,11 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: zhangguian
+ * @Date: 2021-09-08 13:42:05
+ * @LastEditors: zhangguian
+ * @LastEditTime: 2021-10-22 14:55:04
+-->
 
 <template>
   <div class="side-menu-wrapper">
@@ -51,7 +59,7 @@ export default {
     },
     theme: {
       type: String,
-      default: 'dark'
+      default: 'light'
     }
   },
 

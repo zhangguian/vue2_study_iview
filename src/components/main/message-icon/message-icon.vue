@@ -4,14 +4,14 @@
  * @Author: zhangguian
  * @Date: 2021-09-11 14:00:55
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-09-13 15:20:52
+ * @LastEditTime: 2021-10-21 15:55:23
 -->
 <template>
   <!-- <div> -->
         <Dropdown class="msg-dropdown">
           <div class="msg-badge">
           <Badge dot :count="messageUnreadCount">
-            <Icon :size="25" :custom="`i-icon ${icon}`"></Icon>
+            <Icon :size="22" :custom="`i-icon ${icon}`"></Icon>
           </Badge>
           </div>
           <DropdownMenu slot="list" class="msg-dropdownMenu">
