@@ -1,8 +1,8 @@
 @font-face {
   font-family: "custom-font"; /* Project id 2806438 */
-  src: url('//at.alicdn.com/t/font_2806438_zfr7x0h056e.woff2?t=1631362027533') format('woff2'),
-       url('//at.alicdn.com/t/font_2806438_zfr7x0h056e.woff?t=1631362027533') format('woff'),
-       url('//at.alicdn.com/t/font_2806438_zfr7x0h056e.ttf?t=1631362027533') format('truetype');
+  src: url('//at.alicdn.com/t/font_2806438_y4e2y8ogtf.woff2?t=1635041950382') format('woff2'),
+  url('//at.alicdn.com/t/font_2806438_y4e2y8ogtf.woff?t=1635041950382') format('woff'),
+  url('//at.alicdn.com/t/font_2806438_y4e2y8ogtf.ttf?t=1635041950382') format('truetype');
 }
 
 /* .iconfont {
@@ -27,6 +27,22 @@
   -moz-osx-font-smoothing: grayscale;
   vertical-align: middle;
 }
+.icon-chenggong:before {
+  content: "\e608";
+}
+
+.icon-jiantou_xiangyouliangci:before {
+  content: "\eb09";
+}
+
+.icon-jiantou_yemian_xiangyou:before {
+  content: "\eb0b";
+}
+
+.icon-jiantou_yemian_xiangyou_o:before {
+  content: "\eb93";
+}
+
 .icon-tongzhi:before {
   content: "\e626";
 }

@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-10-23 15:18:43
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-10-23 20:29:22
+ * @LastEditTime: 2021-10-25 09:47:31
  */
 /**
   * 校验手机号
@@ -15,6 +15,20 @@ export function phoneReg(phone) {
   const telephoneReg = /^(0\d{2}-\d{8}(-\d{1,4})?)|(0\d{3}-\d{7,8}(-\d{1,4})?)$/
   return cellphoneReg.test(phone) || telephoneReg.test(phone)
 }
+/**
+ * @name: 截取指定符号后面的字符串(包括这字符)
+ * @test: test font
+ * @msg: 
+ * @param {*} obj
+ * @param {*} d 
+ * @return {*}
+ */
+export function getCaption(obj, d) {
+  let index = obj.indexOf(`${d}`)
+  obj = obj.substring(index, obj.length)
+  return obj
+}
+
 
 /**
   * 验证表单字段
