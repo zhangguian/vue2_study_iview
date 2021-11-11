@@ -35,7 +35,7 @@
 <script>
 import SideMenuItem from './side-menu-item.vue'
 import mixin from './mixin'
-import { getUnion } from '@/libs/tools'
+import { getUnion } from '@/utils/tools'
 import './side-menu.less'
 export default {
   name: 'IviewSideMenu',

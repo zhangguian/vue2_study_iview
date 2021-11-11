@@ -20,16 +20,12 @@ export default  [
     name: '_home',
     redirect: '/home',
     component: Main,
-    meta: {
-      // hideInMenu: true,
-    },
+    meta: {},
     children: [
       {
         path: 'home',
         name: 'home',
-        meta: {
-          title: '首页',
-        },
+        meta: {title: '首页',},
         component: () => import('@/views/single-page/home')
       }
     ]
@@ -38,47 +34,79 @@ export default  [
     path: '/workbench',
     name: 'workbench',
     component: Main,
-    meta: {
-      hideInBread: true
-    },
+    meta: { hideInBread: true },
     children: [
       {
         path: 'workbench_page',
         name: 'workbench_page',
-        meta: {
-          icon: 'md-notifications',
-          title: '工作台'
-        },
+        meta: {icon: 'md-notifications',title: '工作台'},
         component: () => import('@/views/workbench/workbench.vue')
       }
+    ]
+  },
+  {
+    path: '/personal-business',
+    name: 'personal-business',
+    component: Main,
+    meta: { hideInBread: true,title: '业务办理' },
+    children: [
+      {
+        path: 'apply_leave_page',
+        name: 'apply_leave_page',
+        meta: {icon: '_qq',title: '请假申请'},
+        component: () => import('@/views/business/applyLeave.vue')
+      },
+      {
+        path: 'apply_evection_page',
+        name: 'apply_evection_page',
+        meta: {icon: '_qq',title: '出差申请'},
+        component: () => import('@/views/business/applyEvection.vue')
+      },
+      {
+        path: 'apply_expense_page',
+        name: 'apply_expense_page',
+        meta: {icon: '_qq',title: '报销申请'},
+        component: () => import('@/views/business/applyExpenses.vue'),
+      },
     ]
   },
   {
     path: '/system-settings',
     name: 'system-settings',
     component: Main,
-    meta: {
-      hideInBread: true,
-      title: '系统设置'
-    },
+    meta: { hideInBread: true,},
+    children: [
+      {
+        path: 'project_management_page',
+        name: 'project_management_page',
+        meta: {icon: 'md-notifications',title: '项目管理'},
+        component: () => import('@/views/project-management/index.vue')
+      },
+    ]
+  },
+  {
+    path: '/system-settings',
+    name: 'system-settings',
+    component: Main,
+    meta: { hideInBread: true, title: '系统配置'},
     children: [
       {
         path: 'role-settings_page',
         name: 'role-settings_page',
-        meta: {
-          icon: '_qq',
-          title: '角色管理'
-        },
-        component: () => import('@/views/system-settings/role-settings.vue')
+        meta: {icon: '_qq',title: '角色管理'},
+        component: () => import('@/views/system-settings/settings.vue')
       },
       {
-        path: 'permissions-settings_page',
-        name: 'permissions-settings_page',
-        meta: {
-          icon: '_qq',
-          title: '权限管理'
-        },
-        component: () => import('@/views/system-settings/permissions-settings.vue')
+        path: 'user-settings_page',
+        name: 'user-settings_page',
+        meta: {icon: '_qq',title: '用户管理'},
+        component: () => import('@/views/system-settings/settings.vue')
+      },
+      {
+        path: 'department-settings_page',
+        name: 'department-settings_page',
+        meta: {icon: '_qq',title: '部门管理'},
+        component: () => import('@/views/system-settings/settings.vue')
       },
     ]
   },
@@ -86,46 +114,33 @@ export default  [
     path: '/user',
     name: 'user',
     component: Main,
-    meta: {
-      hideInBread: true
-    },
+    meta: {hideInBread: true},
     children: [
       {
         path: 'user_page',
         name: 'user_page',
-        meta: {
-          icon: 'md-notifications',
-          title: '个人设置'
-        },
+        meta: {icon: 'md-notifications',title: '个人中心'},
         component: () => import('@/views/user/user-info.vue')
       }
+
     ]
   },
   {
     path: '/task',
     name: 'task',
     component: Main,
-    meta: {
-      hideInBread: true,
-      title: '个人任务'
-    },
+    meta: { hideInBread: true,title: '个人任务'},
     children: [
       {
-        path: 'pendingTaskList_page',
-        name: 'pendingTaskList_page',
-        meta: {
-          icon: 'md-arrow-dropdown-circle',
-          title: '我的待办'
-        },
+        path: 'pending_taskList_page',
+        name: 'pending_taskList_page',
+        meta: {icon: 'md-arrow-dropdown-circle',title: '我的待办'},
         component: () => import('@/views/task/pendingTaskList.vue')
       },
       {
         path: 'doneTaskList_page',
         name: 'doneTaskList_page',
-        meta: {
-          icon: 'md-trending-up',
-          title: '我的已办'
-        },
+        meta: {icon: 'md-trending-up',title: '我的已办'},
         component: () => import('@/views/task/doneTaskList.vue')
       },
     ]
@@ -134,37 +149,46 @@ export default  [
     path: '/components',
     name: 'components',
     component: Main,
-    meta: {
-      hideInBread: true,
-      title: '组件库'
-    },
+    meta: {hideInBread: true,title: '组件库'},
     children: [
       {
         path: 'atable_page',
         name: 'atable_page',
-        meta: {
-          icon: 'md-arrow-dropdown-circle',
-          title: '表格'
-        },
+        meta: {icon: 'md-arrow-dropdown-circle',title: '表格'},
         component: () => import('@/views/components/ATable.vue')
       },
+      
+      // {
+      //   path: 'apply_page',
+      //   name: 'apply_page',
+      //   meta: {icon: 'md-arrow-dropdown-circle',title: '申请单'},
+      //   children: [
+      //     {
+      //       path: 'pending_taskist_page',
+      //       name: 'pending_taskist_page',
+      //       meta: {icon: 'md-arrow-dropdown-circle',title: '我的待办'},
+      //       component: () => import('@/views/task/pendingTaskList.vue')
+      //     },
+      //     {
+      //       path: 'doneTaskist_page',
+      //       name: 'doneTaskist_page',
+      //       meta: {icon: 'md-trending-up',title: '我的已办'},
+      //       component: () => import('@/views/task/doneTaskList.vue')
+      //     },
+      //   ]
+      // },
       {
-        path: 'doneTaskList_page',
-        name: 'doneTaskList_page',
-        meta: {
-          icon: 'md-trending-up',
-          title: '我的已办'
-        },
+        path: 'doneTaskLst_page',
+        name: 'doneTaskLst_page',
+        meta: {icon: 'md-trending-up',title: '我的已办'},
         component: () => import('@/views/task/doneTaskList.vue')
       },
       {
         path: 'login_page',
         name: 'login_page',
-        meta: {
-          title: '登录验证'
-        },
+        meta: {title: '登录验证'},
         component: () => import('@/views/components/Login/Login.vue')
-      }
+      },
     ]
   },
 ]

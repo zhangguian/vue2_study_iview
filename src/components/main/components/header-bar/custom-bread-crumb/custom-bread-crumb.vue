@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-09-04 17:44:05
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-09-11 11:02:09
+ * @LastEditTime: 2021-11-08 21:17:14
 -->
 <template>
   <div class="custom-bread-crumb">
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { showTitle } from '@/libs/util'
+import { showTitle } from '@/util/tools.js'
 import CommonIcon from '_c/common-icon'
 export default {
   // 面包屑

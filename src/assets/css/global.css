@@ -4,3 +4,62 @@
   --colorCCC: #ccc;
   --themeColor: #FF8C00;
 }
+.pointer {
+  cursor: pointer;
+}
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  display: block;
+  min-height: 2px;
+  min-width: 2px;
+  border-radius: 10px;
+  background-color: rgba(217, 217, 217,.8);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  display: block;
+  min-height: 2px;
+  min-width: 2px;
+  border-radius: 10px;
+  background-color: rgba(159, 159, 159, .8);
+}
+
+/* 文本省略 */
+.omit {
+  display: -webkit-box;
+  -webkit-box-orient: vertical; /* 设置对齐模式 */
+  -webkit-line-clamp: 2; /* 设置显示行数 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* 标签颜色 */
+
+.defalue-tag {
+  background: #fafafa;
+  border-radius: 2px;
+  border: 1px solid #d9d9d9;
+}
+.risk-tag {
+  color: #cf1322;
+  background: #fff1f0;
+  border-radius: 2px;
+  border: 1px solid #ffa39e;
+}
+.warning-tag {
+  color: #d48806;
+  background: #fffbe6;
+  border-radius: 2px;
+  border: 1px solid #ffe58f;
+}
+.during-tag {
+  color: #096dd9;
+  background: #e6f7ff;
+  border-radius: 2px;
+  border: 1px solid #91d5ff;
+}

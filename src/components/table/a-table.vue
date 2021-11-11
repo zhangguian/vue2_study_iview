@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-09-15 07:05:07
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-10-22 14:48:57
+ * @LastEditTime: 2021-11-06 11:12:13
 -->
 <template>
   <div>
@@ -22,11 +22,11 @@
     
       <Table v-bind="$attrs" :columns="permissionFilteredColumns" width
         :max-height="tableHeight" @on-row-click="onRowClick" :data="data"
-        border :size="size" @on-current-change="onCurrentChange"
+        :border="border" :size="size" @on-current-change="onCurrentChange"
         @on-select-cancel="onSelectCancel" @on-select="onSelect"
         @on-row-dblclick="onRowDbClick" @on-select-all-cancel="onSelectAllCancel"
         @on-select-all="onSelectAll" @on-sort-change="onSortChange" @on-cell-click="onCellClick"
-        :loading="loading" :highlight-row="!isMultiSelect" stripe
+        :loading="loading" :highlight-row="!isMultiSelect" 
       >
       <!-- 表格头部埋设插槽 -->
         <div slot="header" data-flex="main:right cross:center" style="position: absolute; right: 10px;">
@@ -72,6 +72,7 @@ export default {
     selected: {type: [Object, Array], default: () => ([])},
     pageSize: {type: Number, default: 10},
     simple: Boolean,
+    border: {type: Boolean, default: false}
   },
   data() {
     return {

@@ -1,4 +1,12 @@
-import { forEach, hasOneOf, objEqual } from '@/libs/tools'
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: zhangguian
+ * @Date: 2021-11-08 21:20:12
+ * @LastEditors: zhangguian
+ * @LastEditTime: 2021-11-08 21:20:13
+ */
+import { forEach, hasOneOf, objEqual } from './tools'
 
 /**
  * @param {Array} item 判断路由是否有子

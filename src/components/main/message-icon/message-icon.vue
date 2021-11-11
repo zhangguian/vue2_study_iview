@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-09-11 14:00:55
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-10-21 15:55:23
+ * @LastEditTime: 2021-10-26 19:55:45
 -->
 <template>
   <!-- <div> -->
@@ -66,7 +66,7 @@ export default {
 
   data() {
     return {
-      icon: 'icon-tongzhi',
+      icon: 'icon-tongzhi1',
       theme1: 'light',
       name: 0,
       msgdata: [
