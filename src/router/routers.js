@@ -23,7 +23,7 @@ export default  [
     meta: {},
     children: [
       {
-        path: 'home',
+        path: '/home',
         name: 'home',
         meta: {title: '首页',},
         component: () => import('@/views/single-page/home')
@@ -37,10 +37,24 @@ export default  [
     meta: { hideInBread: true },
     children: [
       {
-        path: 'workbench_page',
+        path: '/workbench_page',
         name: 'workbench_page',
         meta: {icon: 'md-notifications',title: '工作台'},
         component: () => import('@/views/workbench/workbench.vue')
+      }
+    ]
+  },
+  {
+    path: '/workbench_1',
+    name: 'workbench_1',
+    component: Main,
+    meta: { hideInBread: true },
+    children: [
+      {
+        path: '/workbench_1_page',
+        name: 'workbench_1_page',
+        meta: {icon: 'md-notifications',title: '工作台1'},
+        component: () => import('@/views/workbench_1/index.vue')
       }
     ]
   },
@@ -51,19 +65,19 @@ export default  [
     meta: { hideInBread: true,title: '业务办理' },
     children: [
       {
-        path: 'apply_leave_page',
+        path: '/apply_leave_page',
         name: 'apply_leave_page',
         meta: {icon: '_qq',title: '请假申请'},
         component: () => import('@/views/business/applyLeave.vue')
       },
       {
-        path: 'apply_evection_page',
+        path: '/apply_evection_page',
         name: 'apply_evection_page',
         meta: {icon: '_qq',title: '出差申请'},
         component: () => import('@/views/business/applyEvection.vue')
       },
       {
-        path: 'apply_expense_page',
+        path: '/apply_expense_page',
         name: 'apply_expense_page',
         meta: {icon: '_qq',title: '报销申请'},
         component: () => import('@/views/business/applyExpenses.vue'),
@@ -71,17 +85,30 @@ export default  [
     ]
   },
   {
-    path: '/system-settings',
-    name: 'system-settings',
+    path: '/project_management',
+    name: '/project_management',
     component: Main,
-    meta: { hideInBread: true,},
+    meta: { hideInBread: true, title: '项目管理'},
     children: [
       {
-        path: 'project_management_page',
-        name: 'project_management_page',
+        path: '/project_management_page',
+        name: '/project_management_page',
         meta: {icon: 'md-notifications',title: '项目管理'},
-        component: () => import('@/views/project-management/index.vue')
+        component: () => import('@/views/pro-management/proMana.vue')
       },
+      {
+        path: '/project_management/proDetail_page',
+        name: '/project_management/proDetail_page',
+        meta: {icon: 'md-notifications',hideInMenu: 'false'},
+        component: () => import('@/views/pro-management/proDetail/proDetail.vue')
+      },
+      {
+        path: '/project_management/bugDetail_page',
+        name: '/project_management/bugDetail_page',
+        meta: {icon: 'md-notifications',hideInMenu: 'false'},
+        component: () => import('@/views/pro-management/proDetail/components/bugDetail.vue')
+      },
+
     ]
   },
   {

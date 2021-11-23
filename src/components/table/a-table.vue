@@ -4,22 +4,20 @@
  * @Author: zhangguian
  * @Date: 2021-09-15 07:05:07
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-06 11:12:13
+ * @LastEditTime: 2021-11-19 21:15:28
 -->
 <template>
   <div>
-    <Card>
-    <!-- <Card class="form"> -->
+    <!-- <Card> -->
       <form-create
       v-model="formObj" 
       :rule="rule" 
       :option="option" 
       @search-click="onSearch" 
       @clear-click="OnClear"
+      v-if="rule.length"
       ></form-create>
-    <!-- </Card> -->
     <slot name="other"></slot>
-    
       <Table v-bind="$attrs" :columns="permissionFilteredColumns" width
         :max-height="tableHeight" @on-row-click="onRowClick" :data="data"
         :border="border" :size="size" @on-current-change="onCurrentChange"
@@ -33,13 +31,13 @@
           <div data-flex-box="1"><slot name="title"></slot></div>
           <div><slot name="btn"></slot></div>
           <template v-if="table.btns">
-            <i-button v-for="(btn, index) in table.btns" :key="index" v-permission="btn.permission"
-              @click="onBtnClick(btn)" :type="btn.type || 'primary'" 
-            >{{btn.text}}</i-button>
+            <i-button v-for="(btn, index) in table.btns" :key="index" v-permission="btn.permission" :icon="btn.icon" :size="size"
+              @click="onBtnClick(btn)" :type="btn.type || 'dashed'" 
+            style="margin: 0px 8px">{{btn.text}}</i-button>
           </template>
           <!-- 表头筛选 -->
-          <Poptip placement="bottom-end" transfer>
-              <i-button icon="ios-funnel-outline"></i-button>
+          <Poptip placement="bottom-end" transfer >
+              <i-button icon="ios-funnel-outline" :size="size"></i-button>
               <!-- <Icon type="ios-funnel-outline" size='24'/> -->
               <Transfer slot="content" :data="transferData" :target-keys="hideColumnKeys" @on-change="columnsChange" :titles="['显示的列', '隐藏的列']"></Transfer>
           </Poptip>
@@ -53,7 +51,7 @@
           :page-size-opts="pageSizeOpts" :simple="simple"
           show-sizer show-elevator show-total
           data-flex="main:right"/>
-    </Card>
+    <!-- </Card> -->
   </div>
 </template>
 
@@ -222,6 +220,10 @@ export default {
       // if(!this.key) 
       this.hideColumnKeys = targetKeys
       // console.log('targetKeys :>> ', targetKeys);
+    },
+    
+    onBtnClick(btn) {
+      btn.cb({data: this.data})
     },
 
     onPageSizeChange(pageSize) {

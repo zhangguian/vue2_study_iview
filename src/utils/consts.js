@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-10-31 18:16:14
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-10-31 20:34:23
+ * @LastEditTime: 2021-11-23 15:34:57
  */
 import {reverse, objToArr} from './tools'
 const obj = {
@@ -18,6 +18,24 @@ const obj = {
     {"value": 0, "label": "有效"},
     {"value": 1, "label": "无效"},
   ],
+  priStatus: [
+    {"value": 0, "label": "低"},
+    {"value": 1, "label": "中等"},
+    {"value": 2, "label": "高"},
+    {"value": 3, "label": "紧急"},
+  ],
+  severity: [
+    {"value": 0, "label": "低"},
+    {"value": 1, "label": "一般"},
+    {"value": 2, "label": "严重"},
+    {"value": 3, "label": "致命"},
+  ],
+  demandStatus: [
+    {"value": 0, "label": "实现中"},
+    {"value": 1, "label": "规划中"},
+    {"value": 2, "label": "已实现"},
+    {"value": 3, "label": "测试通过"},
+  ]
 }
 // 将以V开头的属性增加一个k和v反转的对象，并且转为label和value的数组放到options里面
 // for (let [k] of Object.entries(obj)) {

@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-09-04 16:38:59
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-09-13 16:17:22
+ * @LastEditTime: 2021-11-18 20:56:01
  */
 const path = require('path')
 
@@ -23,6 +23,7 @@ module.exports = {
     config.resolve.alias
       .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
       .set('_c', resolve('src/components'))
+      // .set('district', resolve('./src/assets/district/province_city_area.js'))
   },
   // 这里写调用接口的基础路径，来解决跨域
   devServer: {
@@ -36,4 +37,8 @@ module.exports = {
         }
     }
   },
+  // pluginOptions: {
+    
+  //   $D: 'district'
+  // }
 }

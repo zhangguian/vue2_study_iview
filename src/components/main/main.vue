@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-09-04 16:55:48
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-10-22 17:12:28
+ * @LastEditTime: 2021-11-22 18:17:48
 -->
 <template>
     <Layout style="height: 100%" class="main">
@@ -16,7 +16,7 @@
       class="left-sider" 
       :style="{overflow: 'hidden'}">
         <side-menu :menuList="menuList" accordion :active-name="'/aaa'"  @on-select="toPage">
-          <div style="height: 59px; backgroundColor: var( --themeColor)">
+          <div style="height: 50px; backgroundColor: var( --themeColor)">
             <img src="../../assets/logo2.png" alt="" style="width: 100%; height: 100%;">
           </div>
         </side-menu>

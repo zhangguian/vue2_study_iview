@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-09-26 15:10:48
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-10-24 06:57:13
+ * @LastEditTime: 2021-11-22 10:31:17
 -->
 <template>
   <div class="login">
@@ -76,7 +76,7 @@ export default {
     width: 100%;
     margin: auto;
     text-align: center;
-    color: #FF8C00;
+    color: #3582fb;
     font-size: 25px
   }
   .login-content {

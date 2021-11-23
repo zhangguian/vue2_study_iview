@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-10-26 21:38:24
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-10-28 23:05:08
+ * @LastEditTime: 2021-11-22 10:31:22
 -->
 <template>
   <Card :bordered="false">
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       messageUnreadCount: 13,
-      iconColor: '#FF8C00'
+      iconColor: '#3582fb'
     };
   },
 
