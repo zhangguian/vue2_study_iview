@@ -19,7 +19,8 @@
     "vue-ls": "^3.2.2",
     "vue-print-nb": "^1.7.5",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "wangeditor": "^4.7.9"
   },
   "devDependencies": {
     "@form-create/iview4": "^2.5.8",

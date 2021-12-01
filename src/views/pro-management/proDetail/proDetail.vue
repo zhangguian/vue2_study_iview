@@ -4,12 +4,12 @@
  * @Author: zhangguian
  * @Date: 2021-11-13 21:20:35
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-23 17:16:24
+ * @LastEditTime: 2021-11-23 23:23:08
 -->
 <template>
   <div>
-    <Card :padding="16">
-      <Row :gutter="10">
+    <Card :padding="8">
+      <!-- <Row :gutter="10">
         <Col :span="12">
           <Card dis-hover :padding="10">
               <div>
@@ -56,43 +56,32 @@
             </div>
           </Card>
         </Col>
-      </Row>
+      </Row> -->
       
-      <div style="margin-top: 20px">
-         <Tabs>
-          <TabPane label="仪表盘" icon="md-speedometer" >
-            <pro-speedometer />
-          </TabPane>
-          <TabPane label="需求" icon="ios-ionic">
-            <pro-demand />
-          </TabPane>
-          <TabPane label="任务" icon="md-paper">
-            <pro-task />
-          </TabPane>
-          <TabPane label="缺陷" icon="ios-bug">
-            <pro-bug />
-          </TabPane>
-          <TabPane label="迭代" icon="md-locate">
-            <!-- <pro-bug /> -->
-          </TabPane>
-        </Tabs>
-        
-      </div>
+      <Tabs v-model="tab">
+        <TabPane label="迭代" icon="md-locate" name="Iteration"></TabPane>
+        <TabPane label="仪表盘" icon="md-speedometer" name="ProSpeedometer"></TabPane>
+        <TabPane label="文档" icon="ios-ionic" name="ProTask"></TabPane>
+        <TabPane label="信息" icon="md-paper" name="ProBug"></TabPane>
+      </Tabs>
+      <component :is="tab"></component>
     </Card>
     
   </div>
 </template>
 <script>
 import {ATable} from '_c/table'
-import ProSpeedometer from './components/proSpeedometer.vue'
+import Iteration from './iteration.vue'
+import ProSpeedometer from './proSpeedometer.vue'
 import ProDemand from './components/proDemand.vue'
 import ProTask from './components/proTask.vue'
 import ProBug from './components/proBug.vue'
 export default {
   name: 'IviewProdetail',
-  components: { ATable, ProSpeedometer,ProDemand, ProTask,ProBug },
+  components: { ATable, ProSpeedometer,ProDemand, ProTask,ProBug, Iteration },
   data() {
     return {
+      tab: this.$route.query['tab'] || 'Iteration',
       textareaVal: '',
     }
   },

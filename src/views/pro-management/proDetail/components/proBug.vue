@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-11-21 00:02:22
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-23 16:21:51
+ * @LastEditTime: 2021-11-24 00:01:35
 -->
 <template>
   <div>
@@ -112,20 +112,20 @@ export default {
           {title: '处理人', key: 'handler', minWidth: 80,align: 'center', },
           {title: '创建人', key: 'creator', minWidth: 30,align: 'center', },
           {title: '创建时间', key: 'creatTime', minWidth: 50,align: 'center', },
-          {title: '操作', key: 'action', align: 'center', minWidth: 30,
-            render: (h, data) => 
-              <template style="width: 100%; display: flex;justify-content: space-evenly;">
-                <Dropdown onOn-click={(val) => this.action(val,data)}>
-                  <a href="javascript:void(0)">更多<Icon type="ios-arrow-down"></Icon></a>
-                  <DropdownMenu slot="list">
-                    <DropdownItem name="details">详情</DropdownItem>
-                    <DropdownItem name="delete">删除</DropdownItem>
-                    <DropdownItem name="update">修改</DropdownItem>
-                    <DropdownItem name="transfer">流转</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
-              </template>
-          },
+          // {title: '操作', key: 'action', align: 'center', minWidth: 30,
+          //   render: (h, data) => 
+          //     <template style="width: 100%; display: flex;justify-content: space-evenly;">
+          //       <Dropdown onOn-click={(val) => this.action(val,data)}>
+          //         <a href="javascript:void(0)">更多<Icon type="ios-arrow-down"></Icon></a>
+          //         <DropdownMenu slot="list">
+          //           <DropdownItem name="details">详情</DropdownItem>
+          //           <DropdownItem name="delete">删除</DropdownItem>
+          //           <DropdownItem name="update">修改</DropdownItem>
+          //           <DropdownItem name="transfer">流转</DropdownItem>
+          //         </DropdownMenu>
+          //       </Dropdown>
+          //     </template>
+          // },
         ],
         btns: [
           {text: '添加缺陷', icon: 'md-add', cb: (obj) => this.test(obj)},

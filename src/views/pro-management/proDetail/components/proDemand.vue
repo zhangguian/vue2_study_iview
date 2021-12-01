@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-11-18 21:01:33
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-23 17:06:00
+ * @LastEditTime: 2021-12-01 10:27:17
 -->
 <template>
   <div>
@@ -12,66 +12,44 @@
     <div style="text-align: right">
       <s-table :table="table" :data="data" :size="size">
         <div style="margin: 0px 10px; width: 200px">
-          <Input v-model="value" size="default" placeholder="请输入需求名称"  search clearable @on-enter="search"/>
+          <Input v-model="value" size="small" placeholder="请输入需求名称"  search clearable @on-enter="search"/>
         </div>
       </s-table>
     </div>
+
     <!-- 新增项目需求 -->
     <Modal v-model="addShow" title="新增项目需求" width="1000" footer-hide>
       <div>
-        <form-create
-        v-model="formObj" 
-        :rule="rule" 
-        :option="option" 
-        ></form-create>
+        <form-create v-model="formObj" :rule="rule" :option="option"></form-create>
       </div>
     </Modal>
+
     <!-- 项目需求详情 -->
-    <Modal v-model="detailsShow" width="1000">
-      <details-form :fields="fields" :formData="data[0]"/>
-      <!-- <div style="padding: 20px 10px">
-        <Row :gutter="16">
-          <Col :span="8">
-            <RadioGroup v-model="button1" type="button" style="display: flex;
-      flex-direction: column;
-      text-align: center;">
-              <Radio label="北京"></Radio>
-              <Radio label="上海"></Radio>
-              <Radio label="深圳"></Radio>
-              <Radio label="杭州"></Radio>
-            </RadioGroup>
-          </Col>
-          <Col :span="16">
-            <div style="border: 1px solid #ccc; height: 200px"></div>
-          </Col>
-        </Row>
-      </div> -->
-
-
+    <Modal v-model="detailsShow" width="700" title="需求详情" @on-visible-change="onVisibleChange">
+      <demand-details :visibleChange="visibleChange"/>
     </Modal>
+
+    <!-- 任务流转 -->
     <Modal v-model="tranShow" title="任务流转" footer-hide>
       <div>
-        <form-create
-        v-model="formObj1" 
-        :rule="rule1" 
-        :option="option" 
-        ></form-create>
+        <form-create v-model="formObj1" :rule="rule1" :option="option"></form-create>
       </div>
     </Modal>
   </div>
 </template>
 
 <script>
+
 import STable from './table.vue'
-import DetailsForm from '_c/form/details-form.vue'
+import demandDetails from './demandDetails.vue'
 export default {
   name: 'IviewProdemand',
   components: {
-    STable,DetailsForm
+    STable,demandDetails
   },
   data() {
     return {
-      button1: '',
+      visibleChange: false,
       value: '',
       formObj: {},
       rule: mock(),
@@ -91,6 +69,7 @@ export default {
       size: "default",
       table: {
         columns: [
+          {title: 'ID', key: 'id', minWidth: 30,},
           {title: '标题', key: 'title', minWidth: 300,},
           {title: '优先级', key: 'priority', minWidth: 30,
             render: (h, data) =>
@@ -98,41 +77,40 @@ export default {
               <Tag color={this.colorType(data.row.priority)}>{this.$tools.changeShow(data.row.priority, this.$c.priStatus)}</Tag>
             </div>
           },
-          {title: '迭代', key: 'iteration', minWidth: 40,},
           {title: '状态', key: 'status', minWidth: 30,
             render: (h,data) => 
               <div>
                 <Button type="info" ghost shape="circle" size="small" onClick={() => this.handleStatus(data)}>{this.$tools.changeShow(data.row.priority, this.$c.demandStatus)}</Button>
               </div>
           },
-          {title: '处理人', key: 'handler', minWidth: 50, 
+          {title: '负责人', key: 'handler', minWidth: 50, 
             render: (h, data) => 
               <template style="width: 100%; display: flex;">
                 <Dropdown onOn-click={(val) => this.action(val,data)}>
-                  <a href="javascript:void(0)" style="color: #ddd">{data.row.handler}</a>
+                  <a href="javascript:void(0)" style="color: #515a6e;">{data.row.handler}</a>
                   <DropdownMenu slot="list">
                     <DropdownItem name="transfer">流转</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
               </template>
           },
-          // {title: '预计开始', key: 'start', minWidth: 30,},
-          // {title: '预计结束', key: 'end', minWidth: 30, },
-          // {title: '操作', key: 'action', align: 'center', minWidth: 30,
-          //   render: (h, data) => 
-          //     <template style="width: 100%; display: flex;justify-content: space-evenly;">
-          //       <Dropdown onOn-click={(val) => this.action(val,data)}>
-          //         <a href="javascript:void(0)">更多<Icon type="ios-arrow-down"></Icon></a>
-          //         <DropdownMenu slot="list">
-          //           <DropdownItem name="details">详情</DropdownItem>
-          //           <DropdownItem name="transfer">流转</DropdownItem>
-          //         </DropdownMenu>
-          //       </Dropdown>
-          //     </template>
-          // },
+          {title: '操作', key: 'action', align: 'center', minWidth: 50,
+            render: (h, data) => 
+              <template style="width: 100%; display: flex;justify-content: space-evenly;">
+                <Dropdown onOn-click={(val) => this.action(val,data)}>
+                  <a href="javascript:void(0)">更多<Icon type="ios-arrow-down"></Icon></a>
+                  <DropdownMenu slot="list">
+                    <DropdownItem name="details">详情</DropdownItem>
+                    <DropdownItem name="delete">删除</DropdownItem>
+                    <DropdownItem name="update">修改</DropdownItem>
+                    <DropdownItem name="transfer">流转</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </template>
+          },
         ],
         btns: [
-          {text: '添加需求', icon: 'md-add', cb: (obj) => this.test(obj)},
+          {text: '提需求', icon: 'md-add', cb: (obj) => this.test(obj)},
         ],
       },
       data: [
@@ -142,6 +120,7 @@ export default {
         {id: '2535648',title: '第三方登录', priority: '1', iteration: '迭代一', status: '0', handler: 'zhangguian', start: '2021-03-10', end: '2020-10-11',},
         {id: '2535648',title: '第三方登录', priority: '3', iteration: '迭代一', status: '0', handler: 'zhangguian', start: '2021-03-10', end: '2020-10-11',},
         {id: '2535648',title: '第三方登录', priority: '3', iteration: '迭代一', status: '0', handler: 'zhangguian', start: '2021-03-10', end: '2020-10-11',},
+        {id: '2535648',title: '第三方登录', priority: '2', iteration: '迭代一', status: '0', handler: 'zhangguian', start: '2021-03-10', end: '2020-10-11',},
         {id: '2535648',title: '第三方登录', priority: '2', iteration: '迭代一', status: '0', handler: 'zhangguian', start: '2021-03-10', end: '2020-10-11',},
         {id: '2535648',title: '第三方登录', priority: '2', iteration: '迭代一', status: '0', handler: 'zhangguian', start: '2021-03-10', end: '2020-10-11',},
       ],
@@ -212,26 +191,33 @@ export default {
     action(name,{row}) {
       if(name == 'details') {
         this.detailsShow =true
+        this.$router.push({
+          name: '/project_management/demandDetails_page'
+        })
       } else if(name == 'transfer') {
         console.log('object :>> ', "object");
         this.tranShow = true
       }
+    },
+    onVisibleChange(val) {
+      console.log('val :>> ', val);
+      if(!val) {this.visibleChange = false}
     }
   },
 };
   function mock() {
     return [
       {type: "input",title: "需求名称",field: "goods_ame",value: "",col: {span:12},
-        props: {"type": "text","clearable": true,"placeholder": "请输入商品名称","required": false,},
-        validate: [{required: true,message: '请输入商品名称',},],
+        props: {"type": "text","clearable": true,"placeholder": "请输入需求名称","required": false,},
+        validate: [{required: true,message: '请输入需求名称',},],
       },
       {type: "input",title: "所属模块",field: "goods_1ame",value: "",col: {span:12},
-        props: {"type": "text","clearable": true,"placeholder": "请输入商品名称","required": false,},
-        validate: [{required: true,message: '请输入商品名称',},],
+        props: {"type": "text","clearable": true,"placeholder": "请输入所属模块","required": false,},
+        validate: [{required: true,message: '请输入所属模块',},],
       },
       {type: "input",title: "预计工时",field: "goods_3ame",value: "",col: {span:12},
-        props: {"type": "text","clearable": true,"placeholder": "请输入商品名称","required": false,},
-        validate: [{required: true,message: '请输入商品名称',},],
+        props: {"type": "text","clearable": true,"placeholder": "请输入预计工时","required": false,},
+        validate: [{required: true,message: '请输入预计工时',},],
       },
       {type: "radio",title: "优先级",field: "is_postage",value: "0",col: {span:12},
       options: [
@@ -250,19 +236,19 @@ export default {
         props: {
           "type": "datetime",
           "format": "yyyy-MM-dd HH:mm:ss",
-          "placeholder": "请选择活动日期",
+          "placeholder": "请选择预计开始时间",
         }
       },
       {
         type: "DatePicker",
         field: "section_day4",
-        title: "活动日期4",
+        title: "预计结束",
         value: '2018-02-20 23:23:23',
         col: {span: 12},
         props: {
           "type": "datetime",
           "format": "yyyy-MM-dd HH:mm:ss",
-          "placeholder": "请选择活动日期",
+          "placeholder": "请选择预计结束时间",
         }
       },
       {
@@ -306,7 +292,7 @@ export default {
       },
       {type: "input",title: "需求描述",field: "goods_2ame",value: "",col: {span:24},
         //input值,
-        props: {"type": "textarea","clearable": true,"placeholder": "请输入商品名称","required": false,rows: 5},
+        props: {"type": "textarea","clearable": true,"placeholder": "请输入需求描述","required": false,rows: 5},
         validate: [{required: true,message: '请输入需求描述',},],
       },
       {
@@ -383,7 +369,7 @@ export default {
       {type: "input",title: "任务名称",field: "goods_dame",value: "",col: {span:12},
         props: {"type": "text","clearable": true,"placeholder": "请输入商品名称","required": false, "readonly": true},
       },
-      {type: "input",title: "原指派给",field: "goods_Same",value: "",col: {span:12},
+      {type: "input",title: "原处理人",field: "goods_Same",value: "",col: {span:12},
         props: {"type": "text","clearable": true,"placeholder": "请输入商品名称","required": false, "readonly": true},
       },
       {

@@ -4,15 +4,17 @@
  * @Author: zhangguian
  * @Date: 2021-11-05 12:36:07
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-06 22:27:13
+ * @LastEditTime: 2021-11-23 17:56:01
 -->
 <template>
   <div>
-    <a-table :data="data" :config="config" :selected.sync="selectedData">
-      <template v-slot:other >
-        <i-button type="primary" icon="md-add" style="margin: 10px 0px" @click="addApply">新增</i-button>
-      </template>
-    </a-table> 
+    <!-- <Card> -->
+      <a-table :data="data" :config="config" :selected.sync="selectedData">
+        <template v-slot:other >
+          <i-button type="primary" icon="md-add" style="margin: 10px 0px" @click="addApply">新增</i-button>
+        </template>
+      </a-table> 
+    <!-- </Card> -->
     <Modal v-model="applyShow" title="新增出差申请单" width="900">
       <form-print :applyContent="applyContent"/>
     </Modal>

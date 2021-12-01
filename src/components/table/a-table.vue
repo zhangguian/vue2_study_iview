@@ -4,11 +4,11 @@
  * @Author: zhangguian
  * @Date: 2021-09-15 07:05:07
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-19 21:15:28
+ * @LastEditTime: 2021-11-23 17:56:37
 -->
 <template>
   <div>
-    <!-- <Card> -->
+    <Card>
       <form-create
       v-model="formObj" 
       :rule="rule" 
@@ -51,7 +51,7 @@
           :page-size-opts="pageSizeOpts" :simple="simple"
           show-sizer show-elevator show-total
           data-flex="main:right"/>
-    <!-- </Card> -->
+    </Card>
   </div>
 </template>
 

@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-11-21 00:02:22
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-22 11:39:58
+ * @LastEditTime: 2021-11-24 00:13:37
 -->
 <template>
   <div>
@@ -69,13 +69,10 @@ export default {
       addShow: false,
       detailsShow: false,
       tranShow: false,
-      size: "small",
+      size: "default",
       table: {
         columns: [
           {title: '标题', key: 'name', minWidth: 260,},
-          {title: '关联需求', key: 'desc', minWidth: 150,align: 'center',tooltip:true,
-            render: (h, data) => <div><a href="#">{data.row.desc}</a></div>
-          },
           {title: '优先级', key: 'creaor', minWidth: 30,align: 'center', },
           {title: '状态', key: 'creator', minWidth: 30,align: 'center', },
           {title: '处理人', key: 'creater', minWidth: 30,align: 'center', },

@@ -38,11 +38,11 @@
 </template>
 
 <script>
-import ProStatus from './proStatus.vue'
+import ProStatus from './components/proStatus.vue'
 import * as echarts from 'echarts';
-import echartDemand from './js/echart-demand-config'
-import echartTask from './js/echart-task-config'
-import echartBug from './js/echart-bug-config'
+import echartDemand from './components/js/echart-demand-config'
+import echartTask from './components/js/echart-task-config'
+import echartBug from './components/js/echart-bug-config'
 
 export default {
   name: 'IviewProspeedometer',

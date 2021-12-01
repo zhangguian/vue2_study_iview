@@ -108,6 +108,12 @@ export default  [
         meta: {icon: 'md-notifications',hideInMenu: 'false'},
         component: () => import('@/views/pro-management/proDetail/components/bugDetail.vue')
       },
+      {
+        path: '/project_management/demandDetails_page',
+        name: '/project_management/demandDetails_page',
+        meta: {icon: 'md-notifications',hideInMenu: 'false'},
+        component: () => import('@/views/pro-management/proDetail/components/demandDetails.vue')
+      },
 
     ]
   },
