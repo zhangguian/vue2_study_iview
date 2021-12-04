@@ -4,11 +4,11 @@
  * @Author: zhangguian
  * @Date: 2021-11-05 08:53:30
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-07 21:41:42
+ * @LastEditTime: 2021-12-02 18:47:49
 -->
 <template>
   <div>
-    <a-table :data="data" :config="config" :selected.sync="selectedData">
+    <a-table action="business/getApplyleaveList" :config="config" size="small" :selected.sync="selectedData">
       <template v-slot:other >
         <i-button type="primary" icon="md-add" style="margin: 10px 0px" @click="addApply">新增</i-button>
       </template>
@@ -149,10 +149,14 @@ export default {
   },
 
   mounted() {
-    
+    this.test1()
   },
 
   methods: {
+    async test1() {
+     const {data} = await this.$store.dispatch('business/getApplyleaveList',{})
+      console.log('data :>> ', data);
+    },
     addApply() {
       this.applyShow = true
     },

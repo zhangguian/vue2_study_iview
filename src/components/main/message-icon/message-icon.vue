@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-09-11 14:00:55
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-10-26 19:55:45
+ * @LastEditTime: 2021-12-02 15:14:15
 -->
 <template>
   <!-- <div> -->
@@ -79,7 +79,7 @@ export default {
   computed: {
     },
   created() {
-    this.testAxios()
+    // this.testAxios()
     console.log('process.env.VUE_APP_BASE_API :>> ', process.env.VUE_APP_BASE_URL)
   },
   mounted() {
@@ -89,10 +89,10 @@ export default {
   methods: {
     
     testAxios() {
-       return request({
-        url: '/test',
-        method: 'get'
-      })
+      //  return request({
+      //   url: '/test',
+      //   method: 'get'
+      // })
     },
 
     getmsgLabel(item) {

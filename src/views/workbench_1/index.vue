@@ -4,11 +4,11 @@
  * @Author: zhangguian
  * @Date: 2021-11-08 21:30:07
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-23 17:26:36
+ * @LastEditTime: 2021-12-03 15:29:26
 -->
 <template>
   <div>
-    <pro-header />
+    <pro-header  :userInfo="userInfo"/>
     <Row :gutter="10">
       <Col :span="16">
         <pro-list :proList="proList" />
@@ -34,7 +34,6 @@
                 <span class="pro-name">12323</span>
               </div>
             </li>
-           
           </ul>
         </Card>
       </Col>
@@ -71,6 +70,13 @@ export default {
           name: 'gos团队'
         }
       ],
+      userInfo: {
+        user: 'zhangguian',
+        userAvatar: require('@/assets/avatar.jpg'),
+        company: '平安科技',
+        department: '前端技术部',
+        position: '前端工程师',
+      }
     };
   },
 

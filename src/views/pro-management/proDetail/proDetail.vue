@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-11-13 21:20:35
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-23 23:23:08
+ * @LastEditTime: 2021-12-01 15:30:36
 -->
 <template>
   <div>
@@ -63,6 +63,7 @@
         <TabPane label="仪表盘" icon="md-speedometer" name="ProSpeedometer"></TabPane>
         <TabPane label="文档" icon="ios-ionic" name="ProTask"></TabPane>
         <TabPane label="信息" icon="md-paper" name="ProBug"></TabPane>
+        <!-- <TabPane label="我的工作项" icon="md-code-working" name="ProBug"></TabPane> -->
       </Tabs>
       <component :is="tab"></component>
     </Card>

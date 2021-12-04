@@ -4,13 +4,12 @@
  * @Author: zhangguian
  * @Date: 2021-10-26 21:38:24
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-22 10:31:22
+ * @LastEditTime: 2021-12-02 22:05:22
 -->
 <template>
   <Card :bordered="false">
     <div class="quitmenu-box">
       <div class="quitmenu-item pointer" @click="waitDone">
-        <!-- <i class="i-icon icon-SQLbianjiqi-02 font" :style="`color: ${iconColor}`"></i> -->
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-daiban" ></use>
         </svg>
@@ -42,7 +41,8 @@
 <script>
 export default {
   name: 'IviewQuitmenu',
-
+  props: {
+  },
   data() {
     return {
       messageUnreadCount: 13,
@@ -79,7 +79,6 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  // flex-direction: column;
   .quitmenu-item {
     line-height: initial;
     padding: 10px;

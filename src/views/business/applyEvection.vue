@@ -4,17 +4,15 @@
  * @Author: zhangguian
  * @Date: 2021-11-05 12:36:07
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-23 17:56:01
+ * @LastEditTime: 2021-12-02 18:51:08
 -->
 <template>
   <div>
-    <!-- <Card> -->
-      <a-table :data="data" :config="config" :selected.sync="selectedData">
-        <template v-slot:other >
-          <i-button type="primary" icon="md-add" style="margin: 10px 0px" @click="addApply">新增</i-button>
-        </template>
-      </a-table> 
-    <!-- </Card> -->
+    <a-table action="business/getApplyleaveList" :config="config" :selected.sync="selectedData">
+      <template v-slot:other >
+        <i-button type="primary" icon="md-add" style="margin: 10px 0px" @click="addApply">新增</i-button>
+      </template>
+    </a-table> 
     <Modal v-model="applyShow" title="新增出差申请单" width="900">
       <form-print :applyContent="applyContent"/>
     </Modal>

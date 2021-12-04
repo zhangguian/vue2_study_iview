@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-11-18 21:01:33
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-01 10:27:17
+ * @LastEditTime: 2021-12-01 14:58:45
 -->
 <template>
   <div>
@@ -102,7 +102,6 @@ export default {
                   <DropdownMenu slot="list">
                     <DropdownItem name="details">详情</DropdownItem>
                     <DropdownItem name="delete">删除</DropdownItem>
-                    <DropdownItem name="update">修改</DropdownItem>
                     <DropdownItem name="transfer">流转</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
@@ -197,6 +196,13 @@ export default {
       } else if(name == 'transfer') {
         console.log('object :>> ', "object");
         this.tranShow = true
+      } else if (name == 'delete') {
+        this.$Modal.warning({
+          title: '您确认删除这条内容吗？',
+          onOk:  () => {
+            console.log('object :>> ', "object");
+          },
+        })
       }
     },
     onVisibleChange(val) {

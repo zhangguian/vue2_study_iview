@@ -4,11 +4,11 @@
  * @Author: zhangguian
  * @Date: 2021-11-06 15:21:15
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-07 14:34:00
+ * @LastEditTime: 2021-12-02 18:48:05
 -->
 <template>
   <div>
-    <a-table :data="data" :config="config" :selected.sync="selectedData">
+    <a-table action="business/getApplyleaveList" :config="config" :selected.sync="selectedData">
       <template v-slot:other >
         <i-button type="primary" icon="md-add" style="margin: 10px 0px" @click="addApply">新增</i-button>
       </template>

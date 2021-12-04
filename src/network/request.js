@@ -4,11 +4,12 @@
  * @Author: zhangguian
  * @Date: 2021-09-12 14:32:20
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-09-26 14:24:58
+ * @LastEditTime: 2021-12-02 15:11:44
  */
 import Vue from 'vue'
 import axios from 'axios'
 import { VueAxios } from './axios'
+import { Message } from 'view-design'
 // 创建 axios 实例
 const BASE_URL = process.env.VUE_APP_BASE_URL
 const request = axios.create({
@@ -70,10 +71,25 @@ request.interceptors.response.use((response) => {
     Vue.use(VueAxios, router, request)
   }
 }
-// export default function http (method, url, params, config = {}) {
-//   return request[method]()
-// }
-export default request
+// export default request
+
+export default function (method, url, params, config = {}) {
+  return request({method,url, params}) 
+    .then(res => {
+      return { data: res || {} }
+    })
+    .catch(error => {
+      if (error.status === 404) {
+        Message.error({ content: '服务接口未找到！', duration: 3 })
+      } else {
+        Message.error({
+          content: error,
+        })
+      }
+    })
+  
+}
+
 export {
   installer as VueAxios,
   request as axios

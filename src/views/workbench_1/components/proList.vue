@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-11-11 13:29:53
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-15 09:59:34
+ * @LastEditTime: 2021-12-03 15:59:19
 -->
 <template>
      <div class="pro-content">
@@ -49,7 +49,7 @@ export default {
   methods: {
     toAllPro() {
       this.$router.push({
-        name: '/project_management/allPro_page',
+        name: '/project_management_page',
         query: {}
       })
     },
@@ -67,9 +67,6 @@ export default {
 <style lang="less" scoped>
 .pro-content {
   margin: 10px 0;
-  // padding: 10px;
-  // background-color: rgb(255, 255, 255);
-  // padding: 10px;
   .pro-list {
     display: flex;
     flex-flow:  wrap;

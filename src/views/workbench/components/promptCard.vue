@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-10-26 21:54:17
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-08 22:49:02
+ * @LastEditTime: 2021-12-02 22:05:12
 -->
 <template>
   <Card :bordered="false" >
@@ -63,16 +63,11 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // .card-more {
-  //   cursor: pointer;
-  // }
 }
 /deep/ .ivu-card-body {
   padding: 6px;
 } 
 /deep/ .ivu-card-head {
-    // border-bottom: 1px solid #e8eaec;
-    padding: 7px 14px;
-    // line-height: 1;
+  padding: 7px 14px;
 }
 </style>

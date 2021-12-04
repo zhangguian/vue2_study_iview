@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-11-05 23:45:12
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-07 21:48:09
+ * @LastEditTime: 2021-12-01 23:23:04
 -->
 <template>
   <div>
@@ -239,7 +239,7 @@ export default {
       ]
     };
   },
-  computed() {
+  computed: {
     
   },
   methods: {

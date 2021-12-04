@@ -4,17 +4,15 @@
  * @Author: zhangguian
  * @Date: 2021-09-10 20:45:50
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-08 22:44:01
+ * @LastEditTime: 2021-12-02 22:03:45
 -->
 <template>
   <div>
     <Row :gutter="14" >
       <Col :span="10">
-      <!-- <Row align="middle" justify="space-around"> -->
-        <!-- <Col> -->
+      <!-- 快捷菜单 -->
         <quitmenu />
-        <!-- </Col>
-        <Col> -->
+      <!-- 项目通知 -->
         <prom-c title="项目通知" icon="icon-xiangmukuzixiangmuyusuanxiadashenqingbiao" >
           <card-item v-for="(item,index) in notifyList" 
           :key="index" :title="item.title"
@@ -29,15 +27,6 @@
           :status="item.status" :desc="item.desc"
           />
         </prom-c>
-        <!-- </Col> -->
-        <!-- <Col>
-          <prom-c title="项目通知" icon="icon-daiban">
-            <card-item v-for="(item,index) in notifyList" :key="index" :title="item.title" :status="item.status" :desc="item.desc"/>
-          </prom-c>
-        </Col> -->
-        <!-- </Row> -->
-       
-    
       </Col>
 
       <Col :span="14">
@@ -57,8 +46,8 @@
               </prom-c>
             </Col>
             <Col :span="24">
-              <prom-c title="本月完成指标" icon="icon-xiaoshouzhibiao">
-                <charts-pie :value="pieValue" style="height: 250px"/>
+              <prom-c title="本月完成指标" icon="icon-xiaoshouzhibiao" :maxHeight="350">
+                <charts-pie :value="pieValue" style="height: 350px"/>
               </prom-c>
             </Col>
         </Row>
@@ -128,20 +117,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 /deep/ .ivu-card {
   margin-bottom: 14px;
-  // max-height: 250px;
 }
 /deep/ .ivu-card-body {
   padding: 6px;
-  // max-height: 250px;
-  /* height: 200px; */
   overflow: auto;
 } 
 /deep/ .ivu-card-head {
-    // border-bottom: 1px solid #e8eaec;
     padding: 7px 14px;
-    // line-height: 1;
 }
 </style>

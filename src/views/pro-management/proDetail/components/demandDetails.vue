@@ -4,190 +4,205 @@
  * @Author: zhangguian
  * @Date: 2021-11-24 01:24:52
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-01 11:03:50
+ * @LastEditTime: 2021-12-01 14:47:48
 -->
 <template>
 <Card>
   <div class="demand-detail" style="padding: 5px 10px">
-    <div style="display: flex;justify-content: space-between; padding-bottom: 4px">
-      <Button size="default" icon="ios-undo" id="back" type="primary" ghost @click="back">返回</Button>
-      <Button size="default" icon="md-create" id="editable" type="primary" ghost @click="editable">修改</Button>
+    <div style="display: flex;justify-content: space-between; padding-bottom: 4px;border-bottom: 1px solid #f8f8f8">
+      <Button size="default" icon="ios-undo" id="back" type="text"  @click="back">返回</Button>
     </div>
     <!-- 标题 -->
-    <Form :model="demandForm" label-position="left" :label-width="100">
-      <FormItem :label="`【${demandForm.id}】`" :prop="demandForm.title">
-        <div class="demand-title">
-          <!-- 详情展示 -->
-          <div data-private="true" v-if="!isEditor">{{demandForm.title}}</div>
-          <!-- 可编辑 -->
-          <Input type="text" v-model="demandForm.title" v-else ref="focusTextarea" clear></Input>
-        </div>
-      </FormItem>
+    <div class="demand-title">
+      <div><span>【{{demandForm.id}}】</span></div>
+      <!-- 详情展示 -->
+      <div style="flex: 1" >
+        <div data-private="true"  @click="editable" v-if="!isEditor" style="padding: 0px">{{demandForm.title}}</div>
+        <!-- 可编辑 -->
+        <Input type="text" 
+        v-else class="input-call" 
+        v-model="demandForm.title" 
+        @on-blur="onBlur" 
+        @on-change="inputOnChange"
+        :autofocus="true"
+        ref="focusInputs"
+        clearable></Input>
+      </div>
+    </div>
 
-     
-      
-      <div>
-       
-          <Tabs>
-            <TabPane label="详情" icon="md-locate" name="Iteration">
-               <!-- 基础属性 -->
-              <div class="demand-desc" style="padding: 0px 0px">
-                <div style="font-size: 15px;color: #303030;padding: 3px 0px">基础属性</div>
-                <!-- 详情展示 -->
-                <div class="demand-info" v-if="!isEditor">
-                  <div class="demand-info-item">
-                    <Avatar size="large" src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+    <!-- 内容 -->
+    <div>
+      <Tabs>
+        <TabPane label="详情" icon="md-locate" name="Iteration">
+            <!-- 基础属性 -->
+          <div class="demand-desc" style="padding: 0px 0px">
+            <div style="font-size: 15px;color: #303030;padding: 3px 0px">基础属性</div>
+            <div class="demand-info">
+              <div class="demand-info-item">
+                <Dropdown  style="margin-left: 20px" transfer>
+                  <div class="demand-info-box">
+                    <Avatar size="large" src="https://i.loli.net/2017/08/21/599a521472424.jpg"></Avatar>
                     <div class="demand-info-content">
-                      <div class="demand-info-content-title omit-inline;">zhangguian</div>
+                      <div class="demand-info-content-title omit-inline;">实现中</div>
                       <div class="demand-info-content-subtitle">负责人</div>
                     </div>
                   </div>
-                  <div class="demand-info-item">
+                    <DropdownMenu slot="list">
+                        <div style="text-align: right;margin:10px;">
+                          <Input v-model="texta" clearable prefix="ios-search" placeholder="请搜索工作负责人"/>
+                        </div>
+                        <DropdownItem>驴打滚</DropdownItem>
+                        <DropdownItem>炸酱面</DropdownItem>
+                        <DropdownItem>豆汁儿</DropdownItem>
+                        <DropdownItem>冰糖葫芦</DropdownItem>
+                        <DropdownItem>北京烤鸭</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+              </div>
+              <div class="demand-info-item">
+                <Dropdown  style="margin-left: 20px" transfer>
+                  <div class="demand-info-box">
                     <Avatar icon="ios-infinite" size="large" style="color: #ffffff;background-color:#f0a100"></Avatar>
                     <div class="demand-info-content">
                       <div class="demand-info-content-title omit-inline;">实现中</div>
                       <div class="demand-info-content-subtitle">当前状态</div>
                     </div>
                   </div>
-                  <div class="demand-info-item">
-                    <Avatar icon="ios-person" size="large" style="background: #f56a00"/>
+                    <DropdownMenu slot="list">
+                      <div style="text-align: right;margin:10px;">
+                        <p>选择步骤更改状态</p>
+                      </div>
+                      <DropdownItem>驴打滚</DropdownItem>
+                      <DropdownItem>炸酱面</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+              </div>
+              <div class="demand-info-item">
+                <Dropdown  style="margin-left: 20px" transfer>
+                  <div class="demand-info-box">
+                    <Avatar icon="ios-infinite" size="large" style="color: #ffffff;background-color:#f0a100"></Avatar>
                     <div class="demand-info-content">
-                      <div class="demand-info-content-title omit-inline;">紧急</div>
+                      <div class="demand-info-content-title omit-inline;">实现中</div>
                       <div class="demand-info-content-subtitle">优先级</div>
                     </div>
                   </div>
-                  <div class="demand-info-item">
-                    <Avatar icon="ios-person" size="large" />
+                    <DropdownMenu slot="list">
+                        <div style="text-align: right;margin:10px;">
+                            <Input v-model="textc" clearable prefix="ios-search" />
+                        </div>
+                        <DropdownItem>驴打滚</DropdownItem>
+                        <DropdownItem>炸酱面</DropdownItem>
+                        <DropdownItem>豆汁儿</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+              </div>
+              <div class="demand-info-item">
+                  <Dropdown  style="margin-left: 20px" transfer>
+                  <div class="demand-info-box">
+                    <Avatar icon="ios-infinite" size="large" style="color: #ffffff;background-color:#f0a100"></Avatar>
                     <div class="demand-info-content">
-                      <div class="demand-info-content-title omit-inline;">
-                        所属迭代
-                      </div>
+                      <div class="demand-info-content-title omit-inline;">实现中</div>
                       <div class="demand-info-content-subtitle">所属迭代</div>
                     </div>
                   </div>
-                </div>
-                <!-- 可编辑 -->
-                <Row :gutter="10" v-else>
-                  <Col :span="12">
-                    <FormItem label="负责人:" :prop="demandForm.principal">
-                      <Select v-model="demandForm.principal" filterable  transfer
-                        :remote-method="remoteMethod1"
-                        :default-label="demandForm.principal"
-                        :loading="loading1">
-                          <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
-                    </FormItem>
-                  </Col>
-                  <Col :span="12">
-                    <FormItem label="状态:" :prop="demandForm.status">
-                      <Select v-model="demandForm.status" filterable transfer
-                        :remote-method="remoteMethod1"
-                        :default-label="demandForm.status"
-                        :loading="loading1">
-                          <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
-                    </FormItem>
-                  </Col>
-                  <Col :span="12">
-                    <FormItem label="优先级:" :prop="demandForm.priority">
-                      <Select v-model="demandForm.priority" filterable transfer
-                        :remote-method="remoteMethod1"
-                        :default-label="demandForm.priority"
-                        :loading="loading1">
-                          <Option v-for="item in priorityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
-                    </FormItem>
-                  </Col>
-                  <Col :span="12">
-                    <FormItem label="所属迭代:" :prop="demandForm.iteration">
-                      <Select v-model="demandForm.iteration" filterable transfer
-                        :remote-method="remoteMethod1"
-                        :default-label="demandForm.iteration"
-                        :loading="loading1">
-                          <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
-                    </FormItem>
-                  </Col>
-                </Row>
+                    <DropdownMenu slot="list">
+                        <div style="text-align: right;margin:10px;">
+                          <Input v-model="textd" clearable prefix="ios-search" />
+                        </div>
+                        <DropdownItem>驴打滚</DropdownItem>
+                        <DropdownItem>炸酱面</DropdownItem>
+                        <DropdownItem>豆汁儿</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
               </div>
-               <!-- 需求描述 -->
-              <div class="demand-desc" style="padding: 0px 0px">
-                <div style="font-size: 15px;color: #303030;padding: 3px 0px">需求描述</div>
-                <div>
-                  <!-- 详情展示 -->
-                  <div v-if="!isEditor">
-                    <Input v-model="demandForm.desc" readonly type="textarea" :rows="6" placeholder="请输入描述" />
-                  </div>
-                  <!-- 可编辑 -->
-                  <div v-else>
-                    <FormItem  :prop="demandForm.desc">
-                      <Input v-model="demandForm.desc" type="textarea" :rows="5" placeholder="请输入描述" />
-                    </FormItem>
-                  </div>
-                </div>
-              </div>
-              <div style="margin: 10px 0px">
-                <div style="font-size: 15px;color: #303030; padding: 5px 0px">基础信息</div>
-                <div class="msg-item" style="display: flex">
-                  <div class="msg-label">所属项目</div>
-                  <div>敏捷是研发管理</div>
-                </div>
-                <div class="msg-item">
-                  <div class="msg-label">工作项类型</div>
-                  <div>需求</div>
-                </div>
-                <div class="msg-item">
-                  <div class="msg-label">创建者</div>
-                  <div>zhangguian</div>
-                </div>
-                <div class="msg-item">
-                  <div class="msg-label">创建时间</div>
-                  <div>2020-10-11 12:12:00</div>
-                </div>
-                <div class="msg-item">
-                  <div class="msg-label">更新时间事件</div>
-                  <div>2020-10-11 12:12:00</div>
-                </div>
-                <div class="msg-item">
-                  <div class="msg-label">完成度</div>
-                  <div>68%</div>
-                </div>
-              </div>
-            </TabPane>
-            <TabPane label="周期与进度" icon="md-speedometer" name="ProSpeedometer">
-              <div>
-                <div class="msg-item">
-                  <div class="msg-label">创建者</div>
-                  <div>zhangguian</div>
-                </div>
-                <div class="msg-item">
-                  <div class="msg-label">创建时间</div>
-                  <div>2020-10-11 12:12:00</div>
-                </div>
-                <div class="msg-item">
-                  <div class="msg-label">计划开始时间</div>
-                  <div>2020-10-11 12:12:00</div>
-                </div>
-                <div class="msg-item">
-                  <div class="msg-label">计划完成时间</div>
-                  <div>2020-10-11 12:12:00</div>
-                </div>
-                <div class="msg-item">
-                  <div class="msg-label">完成度</div>
-                  <div>68%</div>
-                </div>
-              </div>
-            </TabPane>
-            <TabPane label="测试情况" icon="ios-ionic" name="ProTask"></TabPane>
-            <TabPane label="变更记录" icon="md-paper" name="ProBug"></TabPane>
-          </Tabs>
-        
-        <div style="text-align: right;padding: 0px 10px" v-if="isEditor">
-          <Button type="primary">提交</Button>
-        </div>
-        
-      </div>
-    </Form>
+            </div>
+          </div>
+            <!-- 需求描述 -->
+          <div class="demand-desc" style="padding: 0px 0px">
+            <div style="font-size: 15px;color: #303030;padding: 3px 0px">需求描述</div>
+            <div>
+              <div id="wangEditor"></div>
+            </div>
+          </div>
+          <div style="margin: 10px 0px">
+            <div style="font-size: 15px;color: #303030; padding: 5px 0px">基础信息</div>
+            <div class="msg-item" style="display: flex">
+              <div class="msg-label">所属项目</div>
+              <div>敏捷是研发管理</div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-label">工作项类型</div>
+              <div>需求</div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-label">创建者</div>
+              <div>zhangguian</div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-label">创建时间</div>
+              <div>2020-10-11 12:12:00</div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-label">更新时间事件</div>
+              <div>2020-10-11 12:12:00</div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-label">完成度</div>
+              <div>68%</div>
+            </div>
+          </div>
+        </TabPane>
+        <TabPane label="周期与进度" icon="md-speedometer" name="ProSpeedometer">
+          <div>
+            <div class="msg-item">
+              <div class="msg-label">创建者</div>
+              <div>zhangguian</div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-label">创建时间</div>
+              <div>2020-10-11 12:12:00</div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-label">计划开始时间</div>
+              <div>2020-10-11 12:12:00</div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-label">计划完成时间</div>
+              <div>2020-10-11 12:12:00</div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-label">完成度</div>
+              <div>68%</div>
+            </div>
+          </div>
+        </TabPane>
+        <TabPane label="测试情况" icon="ios-ionic" name="ProTask"></TabPane>
+        <TabPane label="变更记录" icon="md-paper" name="ProBug">
+          <Timeline>
+              <TimelineItem>
+                  <p class="time">1976年</p>
+                  <p class="content">Apple I 问世</p>
+              </TimelineItem>
+              <TimelineItem>
+                  <p class="time">1984年</p>
+                  <p class="content">发布 Macintosh</p>
+              </TimelineItem>
+              <TimelineItem>
+                  <p class="time">2007年</p>
+                  <p class="content">发布 iPhone</p>
+              </TimelineItem>
+              <TimelineItem>
+                  <p class="time">2010年</p>
+                  <p class="content">发布 iPad</p>
+              </TimelineItem>
+              <TimelineItem>
+                  <p class="time">2011年10月5日</p>
+                  <p class="content">史蒂夫·乔布斯去世</p>
+              </TimelineItem>
+          </Timeline>
+        </TabPane>
+      </Tabs>
+    </div>
   </div>
 </Card>
 </template>
@@ -204,22 +219,12 @@ export default {
   },
   data() {
     return {
-      demandTitle: '支持商家主动取消订单',
       editorData: '',
+      texta: '',
+      textb: '',
+      textc: '',
+      textd: '',
       isEditor: false,
-      options1: [],
-      loading1: false,
-      cityList: [
-        {value: 'New York',label: 'New York'},
-        {value: 'zhangguian', label: 'zhangguian'},
-        {value: 'London',label: 'London'},
-        {value: 'Sydney',label: 'Sydney'},
-      ],
-      priorityList: [
-        {value: '0', label: '低'},
-        {value: '1', label: '一般'},
-        {value: '2', label: '高'},
-      ],
       demandForm: {
         id: '25644564',
         title: '支持商家主动取消订单',
@@ -232,16 +237,20 @@ export default {
   watch: {},
 
   mounted() {
-    // this.editor()
+    this.editor()
     console.log('this.editor :>> ', this.editor.txt);
   },
 
   methods: {
     editable() {
       this.isEditor = true
-      // alert('232323')
-      this.getEditorData()
-      // this.editor.enable()
+      let that = this
+      setTimeout(function () {
+        that.$refs['focusInputs'].focus()
+      },200);
+    },
+    onBlur() {
+      this.isEditor = false
     },
     editor() {
       const editor = new E("#wangEditor");
@@ -254,25 +263,13 @@ export default {
       }
       editor.config.uploadImgServer = "/api/upload-img";
       // 配置菜单栏，删减菜单，调整顺序
-      editor.config.menus = [
-        'head',
-        'bold',
-        'fontSize',
-        'foreColor',
-        'redo',
-        'image',
-        'justify',
-        'quote',
-        'table',
-      ]
+      editor.config.menus = ['head','bold','fontSize','foreColor','redo','image','justify','quote','table',]
       // 创建编辑器
       editor.create()
-      // editor.disable()
     },
 
     getEditorData() {
       // 通过代码获取编辑器内容
-      // alert('232323')
       // let data = this.editor.txt.html()
       // console.log('data :>> ', data);
     },
@@ -281,7 +278,6 @@ export default {
       this.editor.destroy()
       this.editor = null
     },
-    remoteMethod1() {},
     back() {
       this.$router.go(-1);
     }
@@ -296,6 +292,10 @@ export default {
     font-size: 17px;
     color: #303030;
     font-weight: 500;
+    align-items: center;
+    padding: 0px 0px 4px 0px;
+    margin: 4px 0px;
+    height: 34px;
     border-bottom: 1px solid #e8eaec;
     textarea {
       height: 34px;
@@ -324,31 +324,33 @@ export default {
       flex: 1;
       width: calc(50% - 5px);
       margin-bottom: 10px;
-      display: flex;
       padding: 4px;
       cursor: pointer;
-      align-items: center;
       transition: background-color .2s;
       border-radius: 30px;
       &:hover {
         background-color: #e8f3ff;
       }
-      .demand-info-content {
-        overflow: hidden;
-        margin-left: 10px;
+      .demand-info-box {
         display: flex;
-        flex-direction: column;
-        .demand-info-content-title {
-          font-size: 15px;
-          color: #303030;
-          font-weight: 500;
-        }
-        .demand-info-content-subtitle {
-          line-height: 1;
-          margin-top: 5px;
-          font-size: 12px;
-          color: #909090;
-          font-weight: 500;
+        align-items: center;
+        .demand-info-content {
+          overflow: hidden;
+          margin-left: 10px;
+          display: flex;
+          flex-direction: column;
+          .demand-info-content-title {
+            font-size: 15px;
+            color: #303030;
+            font-weight: 500;
+          }
+          .demand-info-content-subtitle {
+            line-height: 1;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #909090;
+            font-weight: 500;
+          }
         }
       }
     }
@@ -363,6 +365,11 @@ export default {
   }
 }
 
+ .input-call :nth-last-child(1){       
+  font-size: 17px !important;
+  color: #303030;
+  font-weight: 500;
+  }
 /deep/ .ivu-form-item {
     // margin-bottom: 10px;
     // vertical-align: top;

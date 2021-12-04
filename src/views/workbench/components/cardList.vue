@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-10-27 12:53:23
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-08 22:44:39
+ * @LastEditTime: 2021-12-02 22:04:33
 -->
 <template>
   <!-- <div > -->
@@ -15,9 +15,7 @@
         <Time v-else :time="time1" style="fontSize: 12px;color: rgba(0, 0, 0, 0.45);"/>
       </div>
       <div  class="description omit">{{desc}}</div>
-        <!-- <Progress v-else :percent="percent" :stroke-width="5" status="active" stroke-color='#108ee9' /> -->
     </div>
-  <!-- </div> -->
 </template>
 
 <script>
@@ -100,8 +98,6 @@ export default {
     }
   },
   mounted() {
-    // console.log('this.date :>> ', this.date);
-    // console.log('this.proStatus :>> ', this.proStatus);
   },
 
   methods: {

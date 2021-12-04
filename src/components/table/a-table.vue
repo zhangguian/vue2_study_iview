@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-09-15 07:05:07
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-23 17:56:37
+ * @LastEditTime: 2021-12-02 17:57:49
 -->
 <template>
   <div>
@@ -63,9 +63,9 @@ export default {
 
   props: {
     config: {type: Object, required: true},
+    action: {type: String, required: true},
     tableHeight: {type: Number},
     size: String,
-    data: {type: Array,default: []},
     keyField: {type: String, default: 'id'},
     selected: {type: [Object, Array], default: () => ([])},
     pageSize: {type: Number, default: 10},
@@ -76,14 +76,13 @@ export default {
     return {
       formObj: {},
       rule: [],
+      data: [],
       option: {},
-      // data: [],
       hideColumnKeys: [],
       loading: false,
-      total: this.data.length,
+      total: 0,
       mPageSize: this.pageSize,
       pageNum: 1,
-
     };
   },
   computed: {
@@ -132,12 +131,24 @@ export default {
     this.option = this.config.form.option
   },
   mounted() {
+    this.getData()
   },
 
   methods: {
-
-    getData() {
-
+    async getData() {
+      if (!this.action) return 
+      this.loading = true
+      const {data,error} = await this.$store.dispatch(this.action,
+      {pageNum: this.pageNum, pageSize: this.mPageSize, ...this.formObj.formData(),})
+      this.loading = false
+      console.log('data :>> ', data.records);
+      if(data) {
+        this.data = data.records
+        this.total = data.total
+      }
+      if (error) {
+        this.$Message.info(error);
+      }
     },
 
     mergeList(arr1 = [], arr2 = [], key = 'id') {
@@ -146,10 +157,12 @@ export default {
       })
     },
     onSearch() {
-      console.log('搜索键 :>> ', '搜索键');
+      this.pageNum = 1
+      this.getData()
     },
     OnClear() {
-      console.log('清除键 :>> ', '清除键');
+      this.formObj.resetFields()
+      this.getData()
     },
 
     selectData() {
@@ -205,10 +218,10 @@ export default {
 
     // 排序时有效，当点击排序时触发
     onSortChange({key, order}) {
-      // this.sort = {
-      //   querySortColumn: key, querySort: order
-      // }
-      // this.getData()
+      this.sort = {
+        querySortColumn: key, querySort: order
+      }
+      this.getData()
     },
     // 点击单元格时触发
     onCellClick(row, column, data, event) {
@@ -216,10 +229,7 @@ export default {
 
     // 穿梭框 - 选项在两栏之间转移时的回调函数
     columnsChange(targetKeys) {
-      // console.log('object :>> ', object);
-      // if(!this.key) 
       this.hideColumnKeys = targetKeys
-      // console.log('targetKeys :>> ', targetKeys);
     },
     
     onBtnClick(btn) {
@@ -228,11 +238,11 @@ export default {
 
     onPageSizeChange(pageSize) {
       this.mPageSize = pageSize
-      // this.getData()
+      this.getData()
     },
     onPageChange(pageNum) {
       this.pageNum = pageNum
-      // this.getData()
+      this.getData()
     },
   },
 };
