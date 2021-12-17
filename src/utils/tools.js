@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-10-23 15:18:43
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-08 21:15:27
+ * @LastEditTime: 2021-12-16 11:07:46
  */
 /**
   * 校验手机号
@@ -291,4 +291,25 @@ export function changeShow(state, stateList) {
     return item.value == state
   })
   return res? res.label : state
+}
+
+ /**
+  * 产生一个随机数 可设置随机数区间
+  * @param {[Number]} min [随机数区间下限]
+  * @param {[Number]} max [随机数区间上限]
+  * @return {[Number]} [返回一个在此区间的随机数]
+  */
+export function randomNum(min, max) {
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
+/**
+  * 随机字符串数组
+  * @return {[Array]} [随机数组]
+  */
+ export function randomStr() {
+  const str = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789";
+  return str.split("").sort(function () {
+    return Math.random() - 0.5
+  })
 }

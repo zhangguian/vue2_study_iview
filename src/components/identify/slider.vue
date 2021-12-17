@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-10-24 13:54:28
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-10-24 14:35:33
+ * @LastEditTime: 2021-12-05 20:56:30
 -->
 <template>
   <div class="slider-box" :class="sliderStatus?'success' : ''">
@@ -103,20 +103,19 @@ export default {
     position: relative;
     transition: 1s all;
     user-select: none;
-    // color: #333;
     text-align: center;
-    height: 38px;
-    line-height: 38px;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
     i {
-      // #76c61d
       position: absolute;
       left: 0;
       font-size: 24px;
-      width: 60px;/*no*/
+      width: 60px;
       height: 100%; 
       color: #b4aeae;
       background-color: #fff;
-      border: 1px solid #ccc;
+      border: 1px solid rgba(180,174,174, .25);
       cursor: pointer;
       display: flex;
       justify-content: center;
@@ -124,7 +123,6 @@ export default {
     }
 }
 .slidetounlock{
-  // font-size: 12px;
   background:-webkit-gradient(linear,left top,right top,color-stop(0,#4d4d4d),color-stop(.4,#4d4d4d),color-stop(.5,#fff),color-stop(.6,#4d4d4d),color-stop(1,#4d4d4d));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;

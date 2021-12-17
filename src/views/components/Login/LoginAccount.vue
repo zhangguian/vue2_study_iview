@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-09-26 15:11:37
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-10-23 20:56:07
+ * @LastEditTime: 2021-12-16 10:48:51
 -->
 <template>
   <Form ref="model" :model="model" :rules="rules">
@@ -28,19 +28,19 @@
         </FormItem>
       </Col>
       <Col :span="8" style="text-align: right">
-        <NumVerify />
+        <!-- <NumVerify /> -->
       </Col>
     </Row>
   </Form>
 </template>
 
 <script>
-import NumVerify from '_c/identify/numVerify'
+// import NumVerify from '_c/identify/numVerify'
 export default {
   
   name: 'IviewLoginaccount',
 
-  components: { NumVerify },
+  components: {  },
 
   directives: {  },
 

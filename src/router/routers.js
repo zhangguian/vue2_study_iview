@@ -17,9 +17,16 @@ import Main from '../components/main'
 export default  [
   {
     path: '/',
-    name: '_home',
-    redirect: '/home',
+    name: 'login',
+    meta: { hideInMenu: true,title: "登录"},
+    // redirect: '/login',
+    component: () => import('@/views/login/Login.vue')
+  },
+  {
+    path: '/',
+    name: 'home',
     component: Main,
+    redirect: '/home',
     meta: {},
     children: [
       {

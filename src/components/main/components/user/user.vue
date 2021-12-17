@@ -45,8 +45,11 @@ export default {
 
   methods: {
     logout () {
-      // return 2
-      console.log('logout :>> ', logout);
+      window.sessionStorage.removeItem('token')
+      this.$Notice.info({title: '退出登录'})
+      this.$router.push({
+        name: 'login'
+      })
     },
     message () {
       console.log('message :>> ', message);

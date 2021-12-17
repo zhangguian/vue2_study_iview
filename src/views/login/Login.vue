@@ -1,0 +1,155 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: zhangguian
+ * @Date: 2021-09-26 15:10:48
+ * @LastEditors: zhangguian
+ * @LastEditTime: 2021-12-17 13:05:31
+-->
+<template>
+  <div class="login">
+    <!-- <img src="'/src/assets/login_bg.jpg" alt=""> -->
+    <div class="login-box">
+      <div class="login-title">
+        <div>welcome</div>  
+        <div>ANJING JJJ 系统</div>
+      </div>
+      <div class="login-content">
+      <Form>
+        <Tabs @on-click="getLoginType">
+          <TabPane label="账号密码登录" name="account">
+            <login-account ref="account"></login-account>
+          </TabPane>
+          <TabPane label="手机号登录" name="phone">
+            <login-phone ref="phone"></login-phone>
+          </TabPane>
+          <TabPane label="滑块登录" name="slider">
+            <login-slider  ref="slider"></login-slider>
+          </TabPane>
+        </Tabs>
+         
+        <FormItem>
+          <div style="color: #515a6e; text-align: left">
+            <Checkbox v-model="single">自动登录</Checkbox>
+          </div>
+        </FormItem>
+        <FormItem class="login-item">
+          <Button type="primary" class="login-btn" @click="loginSubmit">登 录</Button>
+        </FormItem>
+      </Form>
+      </div>  
+    </div>
+  </div>
+</template>
+
+<script>
+  import LoginAccount from './LoginAccount.vue'
+  import LoginPhone from './LoginPhone.vue'
+  import LoginSlider from './LoginSlider.vue'
+export default {
+  name: 'IviewLogin',
+
+  components: { LoginAccount,LoginPhone, LoginSlider },
+
+  directives: {  },
+
+  data() {
+    return {
+      tabName: 'account' || '',
+      single: true
+    };
+  },
+
+  mounted() {
+    // console.log('window.sessionStorage.account_token :>> ', window.sessionStorage.getItem('token'));
+  },
+  created() {
+  },
+  methods: {
+    getLoginType(name) {
+      this.tabName = name
+    },
+   async loginSubmit() {
+      let ACCOUNT = 'account'
+      let PHONE = 'phone'
+      let SLIDER = 'slider'
+      if(this.tabName == ACCOUNT) {
+        let {username, password, inputCode} =  this.$refs.account.model
+        let codeText = this.$refs.account.codeText
+        // if(inputCode != codeText){
+        //   this.$Message.error('验证码错误！')
+        //   this.$refs.account.drawCanvas()
+        // } else {
+          const {data, err} = await this.$store.dispatch('login/loginAccount', {username, password})
+          if(data.data.code) {
+            this.$Notice.success({title: '欢迎登录'})
+            console.log('data :>> ', data);
+            console.log('data.token :>> ', data.data.token);
+            window.sessionStorage.setItem('token', data.data.token)
+            this.$router.push({
+              name: 'workbench_1_page',
+              query: {}
+            })
+          } else {
+            this.$Message.error(data.data.info || err)
+          }
+        // }
+
+      } else if(this.tabName == PHONE) {
+
+      } else if(this.tabName == SLIDER){
+
+      }
+     
+    }
+  },
+};
+</script>
+
+<style lang="less" scoped>
+.login {
+  display: flex;
+  justify-content: end;
+  margin-right: 20px;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  align-items: center;
+  background: url('../../assets/login_bg1.jpg') no-repeat 0 0;
+  background-size: 100% 100%;
+  .login-box {
+    background: rgba(225,225,225, 0.2);
+    display: flex;
+    margin: 0px 80px;
+    align-items: center;
+    text-align: center;
+    font-size: 25px;
+    border-radius: 8px;
+    position: absolute;
+    top: 60px;                           
+    .login-title {
+      width: 360px;
+      color: #fff;
+    }
+    .login-content {
+      padding: 20px;
+      background: #fff;
+      width: 400px;
+      border-radius: 0px 8px 8px 0px;
+      .login-item {
+        text-align: center;
+        .login-btn {
+          // width: 140px;
+          font-size: 16px;
+          padding: 0px 80px;
+          margin: auto;
+        }
+      }
+      
+    }
+  }
+}
+/deep/ .ivu-tabs-nav {
+  // color: #fff;
+}
+</style>

@@ -4,7 +4,7 @@
  * @Author: zhangguian
  * @Date: 2021-09-04 16:38:59
  * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-18 20:56:01
+ * @LastEditTime: 2021-12-16 23:40:18
  */
 const path = require('path')
 
@@ -13,7 +13,7 @@ const resolve = dir => {
 }
 
 // 定义更目录
-const BASE_URL = process.env.ENV = 'production' ? '/' : './'
+const BASE_URL = process.env.ENV = 'development' ? '/' : './'
 
 module.exports = {
   publicPath: BASE_URL,
@@ -32,7 +32,7 @@ module.exports = {
         '/iv-api': {
             target: 'https://www.fastmock.site/mock/1ed3d3fda7e1f649404a237825bf7e94/api/',
             // 默认情况下，代理时会保留主机头的来源，可以将 changeOrigin 设置为 true 以覆盖此行为。
-            changeOrigin: true,
+            changeOrigin: false,
             pathRewrite: { '^/iv-api': '' }
         }
     }
