@@ -1,15 +1,8 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-05 12:36:07
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-02 18:51:08
--->
+
 <template>
   <div>
-    <a-table action="business/getApplyleaveList" :config="config" :selected.sync="selectedData">
-      <template v-slot:other >
+    <a-table action="business/getApplyleaveList" :config="config" size="small" :selected.sync="selectedData">
+      <template #btn >
         <i-button type="primary" icon="md-add" style="margin: 10px 0px" @click="addApply">新增</i-button>
       </template>
     </a-table> 
@@ -21,7 +14,7 @@
 
 <script>
 import ATable from '_c/table/a-table.vue'
-import FormPrint from '../components/Form/applyEvectionForm.vue'
+import FormPrint from '_c/form/applyEvectionForm.vue'
 const statusMap = {
     0: {
       status: 'processing',
@@ -156,7 +149,6 @@ export default {
         return statusMap[type].text
       },
     test(obj) {
-      console.log('obj :>> ', obj);
     }
   },
 };
@@ -187,15 +179,5 @@ export default {
     }
   }
 }
-.form-item {
-  line-height: 55px;
-  margin: 5px 0px;
-}
- /deep/ .ivu-form-item {
-    // margin-bottom: 24px;
-    vertical-align: top;
-    zoom: 1;
-     line-height: 55px; 
-    margin: 5px 0px;
-}
+
 </style>

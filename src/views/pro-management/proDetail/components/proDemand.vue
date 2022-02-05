@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-18 21:01:33
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-01 14:58:45
--->
+
 <template>
   <div>
     <!-- 需求列表 -->
@@ -40,7 +33,7 @@
 
 <script>
 
-import STable from './table.vue'
+import STable from '../table.vue'
 import demandDetails from './demandDetails.vue'
 export default {
   name: 'IviewProdemand',
@@ -60,7 +53,6 @@ export default {
         submitBtn: true,
         resetBtn:false,
         onSubmit: (formObj) => {
-          console.log('object :>> ', "12132");
         }
       },
       addShow: false,
@@ -157,7 +149,6 @@ export default {
        * */  
     // data: {
     //   handler(val) {
-    //     console.log('val :>> ', val);
     //     this.data.forEach(item => {
     //       let map = {'0': 'gold','1': 'green', '2': 'red', '3': 'error'}
     //       item.priColor = map[item.priority]
@@ -177,15 +168,12 @@ export default {
     },
     test() {
       this.addShow = true
-      console.log('object :>> ', 'object');
     },
     search() {
-      console.log('搜索 :>> ', '搜索');
     },
 
     handleStatus(val) {
       this.detailsShow =true
-      console.log('val :>> ', val);
     },
     action(name,{row}) {
       if(name == 'details') {
@@ -194,19 +182,16 @@ export default {
           name: '/project_management/demandDetails_page'
         })
       } else if(name == 'transfer') {
-        console.log('object :>> ', "object");
         this.tranShow = true
       } else if (name == 'delete') {
         this.$Modal.warning({
           title: '您确认删除这条内容吗？',
-          onOk:  () => {
-            console.log('object :>> ', "object");
+          onOk: () => {
           },
         })
       }
     },
     onVisibleChange(val) {
-      console.log('val :>> ', val);
       if(!val) {this.visibleChange = false}
     }
   },

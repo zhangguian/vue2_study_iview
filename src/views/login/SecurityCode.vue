@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-09-26 20:29:55
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-05 20:36:06
--->
+
 <template>
   <div>
     <canvas id="canvas" :width="contnetWidth" :height="contentHeight"></canvas>

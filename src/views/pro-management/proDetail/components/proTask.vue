@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-21 00:02:22
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-24 00:13:37
--->
+
 <template>
   <div>
     <!-- 任务列表 -->
@@ -44,7 +37,7 @@
 </template>
 
 <script>
-import STable from './table.vue'
+import STable from '../table.vue'
 import DetailsForm from '_c/form/details-form.vue'
 export default {
   name: 'IviewProtask',
@@ -63,7 +56,6 @@ export default {
         submitBtn: true,
         resetBtn:false,
         onSubmit: (formObj) => {
-          console.log('object :>> ', "12132");
         }
       },
       addShow: false,
@@ -135,16 +127,13 @@ export default {
   methods: {
     test() {
       this.addShow = true
-      console.log('object :>> ', 'object');
     },
     search() {
-      console.log('搜索 :>> ', '搜索');
     },
     action(name,{row}) {
       if(name == 'details') {
         this.detailsShow =true
       } else if(name == 'transfer') {
-        console.log('object :>> ', "object");
         this.tranShow = true
       }
     }

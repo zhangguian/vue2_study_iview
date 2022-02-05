@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-05 09:11:29
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-05 10:29:08
--->
+
 <template>
   <div>
     <Row :gutter="10">
@@ -46,7 +39,6 @@
           <FormItem >
             <Button type="primary" @click="submit">保存</Button>
           </FormItem>
-
         </Form>
       </Col>
       <Col :span="14" style="text-align: right">
@@ -88,7 +80,6 @@ export default {
 
   methods: {
     submit() {
-      console.log('this.info :>> ', this.info);
     },
     tagChange() {
       this.$Message.info({

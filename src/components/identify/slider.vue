@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-10-24 13:54:28
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-05 20:56:30
--->
+
 <template>
   <div class="slider-box" :class="sliderStatus?'success' : ''">
     <i  @mousedown="sliderMove" :class="`i-icon ${sliderStatus?succIcon : startIcon}`"></i>
@@ -58,7 +51,6 @@ export default {
 
   methods: {
      sliderMove(e) {
-      console.log('e :>> ', e);
       let slider = e.target
       let startX = e.clientX // 滑块初始X坐标
       let sliderWidth = slider.offsetWidth // 获取滑块宽度
@@ -83,6 +75,7 @@ export default {
 					this.errorFun && this.errorFun();
 				}else{
 					this.sliderStatus = true;
+          // this.status && 	(this.$parent[this.status] = true);
 					if(this.status){
 						this.$parent[this.status] = true;
 					}

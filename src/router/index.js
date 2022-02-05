@@ -1,17 +1,18 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-09-04 16:22:57
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-17 13:45:02
- */
+
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import iView from 'view-design'
 
 
 import routes from './routers'
+
+// 解决多次点击报错
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  return originalPush.call(this, location).catch(err => err)
+}
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -35,7 +36,7 @@ router.beforeEach((to, from, next) => {
   } else if (token && to.name === LOGIN_PAGE_NAME) {
     // 已登录且要跳转的页面是登录页
     next({
-      name: 'home' // 跳转到homeName页
+      name: 'workbench_page' // 跳转到homeName页
     })
   }
   next()

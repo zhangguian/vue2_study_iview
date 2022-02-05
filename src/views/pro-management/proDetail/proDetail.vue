@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-13 21:20:35
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-01 15:30:36
--->
+
 <template>
   <div>
     <Card :padding="8">

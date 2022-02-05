@@ -1,17 +1,10 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-12 15:28:22
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-23 17:35:26
--->
+
 <template>
   <div>
     <Card :padding="10">
       <Tabs>
         <TabPane label="全部项目">
-          <rect-table :data="data" size="small" @handlePro="handlePro"/>
+          <rect-table action="proManagement/proAllList" size="small" @handlePro="handlePro"/>
         </TabPane>
         <TabPane label="进行中">
           <rect-table :data="data" size="small" @handlePro="handlePro"/>
@@ -68,7 +61,6 @@ export default {
         name: '/project_management/proDetail_page',
         query: {}
       })
-      console.log('item :>> ', item);
     }
   },
 };

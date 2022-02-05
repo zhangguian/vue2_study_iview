@@ -1,15 +1,8 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-06 15:21:15
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-02 18:48:05
--->
+
 <template>
   <div>
-    <a-table action="business/getApplyleaveList" :config="config" :selected.sync="selectedData">
-      <template v-slot:other >
+    <a-table action="business/getApplyleaveList" :config="config" size="small" :selected.sync="selectedData">
+      <template #btn >
         <i-button type="primary" icon="md-add" style="margin: 10px 0px" @click="addApply">新增</i-button>
       </template>
     </a-table> 
@@ -26,7 +19,7 @@
 
 <script>
 import ATable from '_c/table/a-table.vue'
-import FormPrint from '../components/Form/applyExpensesForm.vue'
+import FormPrint from '_c/form/applyExpensesForm.vue'
 import ImgUpload from './components/imgUpload.vue'
 const statusMap = {
     0: {
@@ -85,8 +78,8 @@ export default {
             // {title: '序号', type: 'index', align: 'center', minWidth: 50,},
             {title: '费用项目', key: 'project', align: 'center', minWidth: 50,tooltip:true,},
             {title: '费用类别', key: 'type', align: 'center', minWidth: 50,},
-            {title: '消费日期', key: 'date', align: 'center', minWidth: 120,},
-            {title: '申请时间', key: 'applyTime', align: 'center', minWidth: 120,},
+            {title: '消费日期', key: 'date', align: 'center', minWidth: 120,sortable: true},
+            {title: '申请时间', key: 'applyTime', align: 'center', minWidth: 120,sortable: true},
             {title: '内容', key: 'content', align: 'center', minWidth: 140,},
             {title: '金额', key: 'total', align: 'center', minWidth: 50,},
             {title: '流程状态', key: 'status', minWidth: 50,
@@ -161,7 +154,6 @@ export default {
         return statusMap[type].text
       },
     test(obj) {
-      console.log('obj :>> ', obj);
     },
 
    
@@ -194,17 +186,5 @@ export default {
     }
   }
 }
-.form-item {
-  line-height: 55px;
-  margin: 5px 0px;
-}
- /deep/ .ivu-form-item {
-    // margin-bottom: 24px;
-    vertical-align: top;
-    zoom: 1;
-     line-height: 55px; 
-    margin: 5px 0px;
-}
-
 
 </style>

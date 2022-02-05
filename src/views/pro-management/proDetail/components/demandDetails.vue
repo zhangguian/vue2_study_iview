@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-24 01:24:52
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-01 14:47:48
--->
+
 <template>
 <Card>
   <div class="demand-detail" style="padding: 5px 10px">
@@ -143,7 +136,7 @@
               <div>2020-10-11 12:12:00</div>
             </div>
             <div class="msg-item">
-              <div class="msg-label">更新时间事件</div>
+              <div class="msg-label">更新时间</div>
               <div>2020-10-11 12:12:00</div>
             </div>
             <div class="msg-item">
@@ -238,7 +231,6 @@ export default {
 
   mounted() {
     this.editor()
-    console.log('this.editor :>> ', this.editor.txt);
   },
 
   methods: {
@@ -271,7 +263,6 @@ export default {
     getEditorData() {
       // 通过代码获取编辑器内容
       // let data = this.editor.txt.html()
-      // console.log('data :>> ', data);
     },
     beforeDestroy() {
       // 调用销毁 API 对当前编辑器实例进行销毁

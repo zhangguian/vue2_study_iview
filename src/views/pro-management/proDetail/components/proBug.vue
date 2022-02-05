@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-21 00:02:22
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-24 00:01:35
--->
+
 <template>
   <div>
     <!-- 任务列表 -->
@@ -48,7 +41,7 @@
 </template>
 
 <script>
-import STable from './table.vue'
+import STable from '../table.vue'
 import DetailsForm from '_c/form/details-form.vue'
 export default {
   name: 'IviewProbug',
@@ -67,7 +60,6 @@ export default {
         submitBtn: true,
         resetBtn:false,
         onSubmit: (formObj) => {
-          console.log('object :>> ', "12132");
         }
       },
       addShow: false,
@@ -168,7 +160,6 @@ export default {
   watch: {
     data: {
       handler(val) {
-        console.log('val :>> ', val);
         this.data.forEach(item => {
           let map =  {'0': 'gold','1': 'green', '2': 'red', '3': 'error'}
           item.priColor = map[item.priority]
@@ -185,10 +176,8 @@ export default {
     },
     test() {
       this.addShow = true
-      console.log('object :>> ', 'object');
     },
     search() {
-      console.log('搜索 :>> ', '搜索');
     },
     action(name,{row}) {
       if(name == 'details') {
@@ -197,7 +186,6 @@ export default {
           name: '/project_management/bugDetail_page'
         })
       } else if(name == 'transfer') {
-        console.log('object :>> ', "object");
         this.tranShow = true
       }
     }

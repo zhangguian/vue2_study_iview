@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-15 19:06:51
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-22 10:30:44
--->
+
 <template>
   <div ref="dom"></div>
 </template>
@@ -88,7 +81,6 @@ export default {
       this.dom = echarts.init(this.$refs.dom,)
       this.dom.setOption(option)
     });
-    // console.log('this.dom :>> ', this.dom);
   },
 
   methods: {

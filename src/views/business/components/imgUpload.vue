@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-07 13:38:45
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-07 13:54:49
--->
+
 <template>
    <div class="upload">
 
@@ -83,8 +76,6 @@ export default {
         this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
     },
     handleSuccess (res, file) {
-      console.log('res :>> ', res);
-      console.log('file :>> ', file);
     },
     handleFormatError (file) {
         this.$Notice.warning({

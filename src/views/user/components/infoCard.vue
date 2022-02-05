@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-05 08:53:30
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-05 11:04:10
--->
+
 <template>
   <Card :bordered="false" class="info-box">
     <div class="avater">
@@ -50,7 +43,6 @@ export default {
   methods: {
      chage() {
       let a = this.$tools.splitStr(this.obj, '、')
-      console.log('a :>> ', a);
     }
   },
 };
@@ -60,6 +52,7 @@ export default {
 .info-box {
   padding: 20px;
   text-align: center;
+  height: 100%;
   .avater {
     display: flex;
     /* justify-content: space-around; */

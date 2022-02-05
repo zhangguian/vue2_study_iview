@@ -1,4 +1,6 @@
-<template>
+
+<template
+>
   <Submenu :name="`${parentName}`">
     <template slot="title">
       <span>{{showTitle(parentItem)}}</span>
@@ -11,12 +13,11 @@
 </template>
 
 <script>
-import CommonIcon from '_c/common-icon'
 import mixin from './mixin'
 export default {
   name: 'IviewSideMenuItem',
   mixins: [ mixin ],
-  components: { CommonIcon, },
+  components: {  },
   props: { 
     parentItem: {
       type: Object,
@@ -52,6 +53,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 
 </style>

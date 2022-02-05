@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-20 21:02:26
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-21 19:26:41
--->
+
 <template>
   <div>
     <slot name="title"></slot>

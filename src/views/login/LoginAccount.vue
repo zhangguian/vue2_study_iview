@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-09-26 15:11:37
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-16 11:19:05
--->
+
 <template>
   <Form ref="model" :model="model" :rules="rules">
     <FormItem  prop="username">
@@ -108,7 +101,7 @@ export default {
         let b = this.$tools.randomNum(min, max)
         // return 'rgb(' + r + ',' + g + ',' + b + ')'
         return `rgb(${r},${g},${b})`;
-      },
+      },/*  */
     /**
       * 绘制文本字符串
       * @param {[String]} canvasId [canvas的id]

@@ -1,11 +1,4 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-16 14:36:11
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-16 19:16:33
- */
+
 export default {
   option: {
    title: {

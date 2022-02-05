@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-10-24 06:25:45
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-05 20:38:38
--->
+
 <template>
     <Form ref="model" :model="model" :rules="rules">
       <FormItem  prop="phone">
@@ -66,7 +59,6 @@ export default {
         phone: [
           { required: true, message: '请输入手机号!',trigger: 'blur' },
           { validator: (rule, value, callback) => {
-            console.log('value :>> ', this.$tools);
             if(this.$tools.phoneReg(value)) {callback()}
             else {callback('手机号码不正确')}
           }
@@ -90,10 +82,8 @@ export default {
 
   methods: {
    areaChange(value) {
-     console.log('newVal :>> ', value);
     //  this.areaCode = this.$tools.getCaption(val.label, '+')
     //  this.phoneArea = value
-    //  console.log('val :>> ', this.areaCode);
    }
   },
 };

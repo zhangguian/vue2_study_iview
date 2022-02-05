@@ -1,13 +1,6 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-05 09:05:20
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-05 09:16:07
--->
+
 <template>
-  <Card :bordered="false">
+  <Card :bordered="false" style="height: 100%">
     <Tabs value="baseInfo">
       <TabPane label="基本信息" name="baseInfo">
         <base-info />

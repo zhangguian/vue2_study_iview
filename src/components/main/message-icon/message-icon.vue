@@ -1,24 +1,17 @@
-<!--
- * @Descripttion: 消息提醒
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-09-11 14:00:55
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-02 15:14:15
--->
+
 <template>
   <!-- <div> -->
         <Dropdown class="msg-dropdown">
           <div class="msg-badge">
-          <Badge dot :count="messageUnreadCount">
-            <Icon :size="22" :custom="`i-icon ${icon}`"></Icon>
-          </Badge>
+            <Badge dot :count="messageUnreadCount">
+              <Icon :size="22" :custom="`i-icon ${icon}`"></Icon>
+            </Badge>
           </div>
           <DropdownMenu slot="list" class="msg-dropdownMenu">
             <Tabs :value="msgdata[0].label" size="small">
                 <TabPane v-for="item in msgdata" :key="item.label" :label="getmsgLabel(item)" :name="item.label">
                   <div class="msg-content">
-                    <no-data v-if="item.count === 0" :icon="'icon-zu1575'" :size="75" :text="'暂无数据'"></no-data>
+                    <no-data v-if="item.count" :icon="'icon-zu1575'" :size="75" :text="'暂无数据'"></no-data>
                     <div v-else>{{item.content}}</div>
                   </div>
                   <div class="msg-button">
@@ -33,7 +26,6 @@
 </template>
 
 <script>
-import CommonIcon from '_c/common-icon'
 import { NoData } from '_c/prompt'
 
 import request from '@/network/request.js'
@@ -41,7 +33,7 @@ import request from '@/network/request.js'
 export default {
   name: 'IviewMessageIcon',
 
-  components: { CommonIcon, NoData },
+  components: { NoData },
 
   props: { 
     magLists: {
@@ -79,8 +71,6 @@ export default {
   computed: {
     },
   created() {
-    // this.testAxios()
-    console.log('process.env.VUE_APP_BASE_API :>> ', process.env.VUE_APP_BASE_URL)
   },
   mounted() {
     
@@ -99,10 +89,8 @@ export default {
       return item['label'] + '(' + item.count + ')'
     },
     lookMore() {
-      console.log('lookMore :>> ', lookMore);
     },
     emptyRecord() {
-      console.log('emptyRecord :>> ', emptyRecord);
     }
   },
 };

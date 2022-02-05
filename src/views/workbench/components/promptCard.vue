@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-10-26 21:54:17
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-02 22:05:12
--->
 <template>
   <Card :bordered="false" >
     <div slot="title" class="card-title">
@@ -39,7 +31,7 @@ export default {
     title: String,
     maxHeight: {
     type: Number,
-    default: 250
+    default: 300
     },
   },
   data() {

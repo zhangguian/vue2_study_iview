@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-09-04 16:55:48
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-22 18:17:48
--->
+
 <template>
     <Layout style="height: 100%" class="main">
       <Sider 
@@ -67,17 +60,12 @@ export default {
   computed: {
     ...mapGetters(['menuList'])
   },
-  mounted() {
-    // console.log('this.$route.name :>> ', this.$route.name);
-  },
+  mounted() {},
 
   methods: {
     handleClick() {
-      // console.log('usermain :>> ', usermain);
     },
     toPage(route) {
-      
-      console.log('111route :>> ', route)
       let { name, params, query } = {}
         if (typeof route === 'string') name = route
       else {

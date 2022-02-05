@@ -1,11 +1,4 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-12-01 23:09:51
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-02 15:45:51
- */
+
 import api from '../api/index'
 
 const state = {}

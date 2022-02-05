@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 顶部栏
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-09-04 17:31:43
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-09-11 11:17:45
--->
 
 <template>
   <div class="header-bar">

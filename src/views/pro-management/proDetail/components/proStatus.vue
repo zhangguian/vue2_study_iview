@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-15 17:37:55
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-22 10:31:10
--->
+
 <template>
   <div>
     <div class="title" style="fontSize: 13px">

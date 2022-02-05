@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-10-26 21:38:24
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-02 22:05:22
--->
+
 <template>
   <Card :bordered="false">
     <div class="quitmenu-box">
@@ -56,13 +49,10 @@ export default {
 
   methods: {
     waitDone() {
-      console.log('我的待办 :>> ', '我的待办');
     },
     approval() {
-      console.log('待我审批 :>> ', '待我审批');
     },
     myApplication() {
-      console.log('我的申请 :>> ', '我的申请');
     }
   },
 };
@@ -81,8 +71,8 @@ export default {
   align-items: center;
   .quitmenu-item {
     line-height: initial;
-    padding: 10px;
-    margin: 2px;
+    padding: 20px;
+    margin: 3px;
   }
 }
 </style>

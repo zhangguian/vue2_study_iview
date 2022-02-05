@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-09-26 15:10:48
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-17 13:05:31
--->
+
 <template>
   <div class="login">
     <!-- <img src="'/src/assets/login_bg.jpg" alt=""> -->
@@ -34,7 +27,7 @@
           </div>
         </FormItem>
         <FormItem class="login-item">
-          <Button type="primary" class="login-btn" @click="loginSubmit">登 录</Button>
+          <Button type="primary" class="login-btn" @click="loginSubmit" >登 录</Button>
         </FormItem>
       </Form>
       </div>  
@@ -61,7 +54,6 @@ export default {
   },
 
   mounted() {
-    // console.log('window.sessionStorage.account_token :>> ', window.sessionStorage.getItem('token'));
   },
   created() {
   },
@@ -83,8 +75,6 @@ export default {
           const {data, err} = await this.$store.dispatch('login/loginAccount', {username, password})
           if(data.data.code) {
             this.$Notice.success({title: '欢迎登录'})
-            console.log('data :>> ', data);
-            console.log('data.token :>> ', data.data.token);
             window.sessionStorage.setItem('token', data.data.token)
             this.$router.push({
               name: 'workbench_1_page',
@@ -123,12 +113,12 @@ export default {
     margin: 0px 80px;
     align-items: center;
     text-align: center;
-    font-size: 25px;
     border-radius: 8px;
     position: absolute;
     top: 60px;                           
     .login-title {
       width: 360px;
+      font-size: 25px;
       color: #fff;
     }
     .login-content {

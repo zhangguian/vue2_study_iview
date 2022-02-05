@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-12 13:32:45
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-12 15:41:03
--->
 <template>
   <div ref="dom">
     

@@ -1,12 +1,4 @@
-/*
- * @Descripttion: JSON5 -- 解决JSON文件格式严格问题 
- * 如：无法添加注释问题-双引号定义要求等
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-09-13 08:31:34
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-09-13 08:33:52
- */
+
 
 const fs = require('fs')
 const path = require('path')

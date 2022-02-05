@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-16 22:49:05
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-24 00:04:37
--->
+
 <template>
   <div>
     <Table 
@@ -17,7 +10,7 @@
       <div slot="header" style="display: flex; justify-content: satart; align-items: center;">
         <slot style="margin: 0px 10px"></slot>
         <template v-if="table.btns">
-          <i-button v-for="(btn, index) in table.btns" :key="index"  style="fontSize: 14px" :icon="btn.icon" size="small"
+          <i-button v-for="(btn, index) in table.btns" :key="index" style="fontSize: 14px" :icon="btn.icon" size="small"
             @click="onBtnClick(btn)" :type="btn.type || 'info'" 
           >{{btn.text}}</i-button>
         </template>

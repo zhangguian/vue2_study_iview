@@ -1,11 +1,4 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-23 15:39:16
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-23 15:40:24
- */
+
 export const myMixins = {
   components:{},
   data() {

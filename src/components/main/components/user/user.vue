@@ -52,11 +52,8 @@ export default {
       })
     },
     message () {
-      console.log('message :>> ', message);
     },
      handleClick (name) {
-      // const a = await this.logout()
-      // console.log('this :>> ', a);
       switch (name) {
         case 'logout': this.logout()
           break

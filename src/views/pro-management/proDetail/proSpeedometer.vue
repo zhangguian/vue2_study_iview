@@ -1,16 +1,6 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-15 15:03:50
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-23 17:11:44
--->
+
 <template>
   <div>
-        
-        
-
     <Row :gutter="10">
       <Col :span="8">
         <Card dis-hover :padding="10">

@@ -4,8 +4,6 @@
 
 <script>
 import * as echarts from 'echarts';
-// import tdTheme from './theme.json'
-// echarts.registerTheme('tdTheme', tdTheme)
 export default {
   name: 'IviewBar',
 
@@ -58,7 +56,6 @@ export default {
       this.dom = echarts.init(this.$refs.dom,)
       this.dom.setOption(option)
     });
-    // console.log('this.dom :>> ', this.dom);
   },
 
   methods: {

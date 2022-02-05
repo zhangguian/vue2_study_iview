@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-09-11 20:21:48
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-09-11 21:09:56
--->
+
 <template>
   <div class="no-data">
     <Icon :size="size" :custom="`i-icon ${icon}`" :color="color" />

@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-05 23:45:12
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-01 23:23:04
--->
+
 <template>
   <div>
     <div style="text-align: right;margin-right: 10px" v-if="printShow">
@@ -88,7 +81,7 @@
                   <td colspan="6">
                     <Row>
                       <Col :span="12">
-                        <FormItem label="请假时间:" :label-width="100"  :prop="applyContent.startDate.toString()">
+                        <FormItem label="请假时间:" :label-width="100"  :prop="applyContent.startDate">
                           <DatePicker type="datetime" style="width: 200px"  v-model="applyContent.startDate" :readonly="readonly"></DatePicker>
                         </FormItem>
                       </Col>
@@ -96,7 +89,7 @@
                         <span style="line-height: 42px;height: 100%;">至</span>
                       </Col>
                       <Col :span="8">
-                        <FormItem :prop="applyContent.endDate.toString()">
+                        <FormItem :prop="applyContent.endDate">
                           <DatePicker type="datetime" style="width: 200px" v-model="applyContent.endDate" :readonly="readonly"></DatePicker>
                         </FormItem>
                       </Col>

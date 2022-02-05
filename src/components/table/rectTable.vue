@@ -1,33 +1,36 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-12 15:52:17
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-23 17:39:40
--->
+
 <template>
   <div>
     <div style="text-align: right">
       <slot name="other"></slot>
-      <Input v-model="value" placeholder="Enter something..." style="width: 300px;" search clearable @on-enter="search"/>
+      <Input v-model="value" 
+      placeholder="Enter something..." 
+      style="width: 300px;" 
+      search clearable 
+      @on-enter="handleSearch"
+      @on-clear="handleClear" />
     </div>
-    <div class="pro-list">
-      <Row>
-        <Col :span="6"  v-for="(item, index) in data" :key="index">
-        <div class="pro-item" @click="handlePro(item)">
-          <div class="pro-title">
-            <Avatar icon="ios-person" size="default" />
-            <span class="pro-name">{{item.proName}}</span>
+    <div class="content">
+      <div class="no-data" style="height: 100%;padding: 200px" v-if="!isData">
+        <no-data :icon="'icon-zu1575'" :size="100" :text="'暂无数据'"></no-data>
+      </div>
+      <div class="pro-list" v-else>
+        <Row>
+          <Col :span="6"  v-for="(item, index) in data" :key="index">
+          <div class="pro-item" @click="handlePro(item)">
+            <div class="pro-title">
+              <Avatar icon="ios-person" size="default" />
+              <span class="pro-name">{{item.proName}}</span>
+            </div>
+            <div class="pro-desc">{{item.proDesc}}</div>
+            <div class="pro-publish">
+              <a href="#" style="color: rgba(0, 0, 0, 0.45);" ><span>飞天大盗</span></a>
+              <div class="time" ><Time :time="time1(item.time)" /></div>
+            </div>
           </div>
-          <div class="pro-desc">{{item.proDesc}}</div>
-          <div class="pro-publish">
-            <a href="#" style="color: rgba(0, 0, 0, 0.45);" ><span>飞天大盗</span></a>
-            <div class="time" ><Time :time="time1(item.time)" /></div>
-          </div>
-        </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </div>
     </div>
     <div  style="text-align: right">
       <Page :total="total" :page-size="mPageSize"
@@ -42,19 +45,23 @@
 </template>
 
 <script>
+import { NoData } from '_c/prompt'
 export default {
   name: 'IviewRecttable',
+  components: {NoData},
   props: {
     pageSize: {type: Number, default: 10},
+    action: {type: String},
     simple: Boolean,
     border: {type: Boolean, default: false},
     size: String,
-    data: {type: Array,default: []},
   },
   data() {
     return {
       value: '',
-      total: this.data.length,
+      data: null,
+      total: 0,
+      isData: false,
       mPageSize: this.pageSize,
       pageNum: 1,
     };
@@ -65,23 +72,43 @@ export default {
     },
   },
   mounted() {
-    
+    this.getData()
   },
 
   methods: {
+    async getData() {
+      if (!this.action) return 
+      this.loading = true
+      const {data,error} = await this.$store.dispatch(this.action,
+      {pageNum: this.pageNum, pageSize: this.mPageSize, value: this.value,})
+      this.loading = false
+      if(data) {
+        this.data = data.records
+        this.total = data.total
+        if(data.records) this.isData = true
+      }
+      if (error) {
+        this.$Message.info(error);
+      }
+    },
+
+
     time1(time) {
       return new Date(time).getTime() - 60 * 3 * 1000
     },
-    search() {
-      console.log('搜索 :>> ', '搜索');
+    handleSearch() {
+      this.getData()
+    },
+    handleClear() {
+      this.getData()
     },
     onPageSizeChange(pageSize) {
       this.mPageSize = pageSize
-      // this.getData()
+      this.getData()
     },
     onPageChange(pageNum) {
       this.pageNum = pageNum
-      // this.getData()
+      this.getData()
     },
     handlePro(item) {
       this.$emit('handlePro', item);

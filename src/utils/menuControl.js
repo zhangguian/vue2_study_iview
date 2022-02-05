@@ -1,11 +1,4 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-08 21:20:12
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-08 21:20:13
- */
+
 import { forEach, hasOneOf, objEqual } from './tools'
 
 /**
@@ -13,7 +6,7 @@ import { forEach, hasOneOf, objEqual } from './tools'
  * @returns {Array}
  */
 export const hasChild = (item) => {
-  return item.children && item.children.length !==0
+  return item.children && item.children.length !== 0
 }
 
 const showThisMenuEle = (item, access) => {
@@ -28,19 +21,18 @@ const showThisMenuEle = (item, access) => {
  * @returns {Array}
  */
 export const getMenuByRouter = (list, access) => {
-  // console.log('list :>> ', list);
   let res = []
   forEach(list, item => {
-    if(!item.meta || (item.meta && !item.meta.hideInMenu)) {
+    if (!item.meta || (item.meta && !item.meta.hideInMenu)) {
       let obj = {
         icon: (item.meta && item.meta.icon) || '',
         name: item.name,
         meta: item.meta
       }
-      if((hasChild(item) || (item.meta && item.meta.showAlways)) && showThisMenuEle(item,access)) {
+      if ((hasChild(item) || (item.meta && item.meta.showAlways)) && showThisMenuEle(item, access)) {
         obj.children = getMenuByRouter(item.children, access)
       }
-      if(item.meta && item.meta.href) obj.href = item.meta.href
+      if (item.meta && item.meta.href) obj.href = item.meta.href
       if (showThisMenuEle(item, access)) res.push(obj)
     }
   })
@@ -51,7 +43,7 @@ export const getMenuByRouter = (list, access) => {
  * @returns {Array}
  */
 export const getBreadCrumblist = (route, homeRoute) => {
-  
+
 }
 
 // scrollTop animation

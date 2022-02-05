@@ -1,11 +1,4 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-09-12 14:32:20
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-17 13:06:12
- */
+
 import Vue from 'vue'
 import axios from 'axios'
 import qs from 'qs'
@@ -25,7 +18,7 @@ const request = axios.create({
     }
   },
   //  请求数据转换
-   transformRequest: [(params) => {
+  transformRequest: [(params) => {
     return JSON.stringify(params)
   }],
   //相应数据转换
@@ -40,17 +33,17 @@ const request = axios.create({
 
 // 异常拦截
 const err = (error) => {
-  if(error.response) {
-    let data =  error.response.data
+  if (error.response) {
+    let data = error.response.data
     switch (error.response.status) {
       case 403:
-        Vue.prototype.$Notice.error({ message: '系统提示', description: '拒绝访问',duration: 4})
+        Vue.prototype.$Notice.error({ message: '系统提示', description: '拒绝访问', duration: 4 })
         break;
       case 401:
         // Vue.prototype.$Message.error({message: 'token'})
         break;
       case 504:
-        Vue.prototype.$Message.error({ content: '网络超时'})
+        Vue.prototype.$Message.error({ content: '网络超时' })
         break
       default:
         Vue.prototype.$Message.error({
@@ -63,7 +56,7 @@ const err = (error) => {
     if (error.message.includes('timeout')) {
       Vue.prototype.$Message.error({ content: '网络超时' })
     } else {
-      Vue.prototype.$Message.error({ content: error.message})
+      Vue.prototype.$Message.error({ content: error.message })
     }
   }
   return Promise.reject(error)
@@ -78,30 +71,30 @@ request.interceptors.request.use(config => {
   if (token) {
     config.headers['Access-Token'] = token
   }
-  // console.log('config :>> ', config);
   return config
-},err)
+}, err)
 
 // 响应拦截器
 request.interceptors.response.use((response) => {
-    return response.data
-  }, err)
+  return response.data
+}, err)
 
- // 挂载到vue实例上
- const installer = {
-  vm: {},
-  install (Vue, router = {}) {
-    Vue.use(VueAxios, router, request)
-  } 
-}
+// 挂载到vue实例上
+//  const installer = {
+//   vm: {},
+//   install (Vue, router = {}) {
+//     Vue.use(VueAxios, router, request)
+//   } 
+// }
 
 
 export default function (method, url, params, config = {}) {
-  return request({method,url,
+  return request({
+    method, url,
     params: method === "get" || method === 'DELETE' ? params : null,
     data: method === 'post' || method === "PUT" ? params : null
-  
-  }) 
+
+  })
     .then(res => {
       return { data: res || {} }
     })
@@ -114,10 +107,10 @@ export default function (method, url, params, config = {}) {
         })
       }
     })
-  
+
 }
 
 export {
-  installer as VueAxios,
-  request as axios
+  // installer as VueAxios,
+  // request as axios
 }

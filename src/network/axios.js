@@ -1,11 +1,4 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-09-12 14:31:41
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-09-12 14:32:01
- */
+
 
 const VueAxios = {
   vm: {},

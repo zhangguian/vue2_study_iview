@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-15 10:40:17
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-15 13:33:00
--->
+
 <template>
   <div>
     <Tree :data="data5" :render="renderContent" class="demo-tree-render"></Tree>

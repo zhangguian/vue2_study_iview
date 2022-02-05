@@ -1,15 +1,8 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-05 08:53:30
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-02 18:47:49
--->
+
 <template>
   <div>
     <a-table action="business/getApplyleaveList" :config="config" size="small" :selected.sync="selectedData">
-      <template v-slot:other >
+      <template #btn >
         <i-button type="primary" icon="md-add" style="margin: 10px 0px" @click="addApply">新增</i-button>
       </template>
     </a-table> 
@@ -24,7 +17,7 @@
 
 <script>
 import ATable from '_c/table/a-table.vue'
-import FormPrint from '../components/Form/applyLeaveForm.vue'
+import FormPrint from '_c/form/applyLeaveForm.vue'
 const statusMap = {
     0: {
       status: 'processing',
@@ -85,9 +78,10 @@ export default {
             {title: '名称', key: 'applicant', align: 'center', minWidth: 60,tooltip:true,},
             {title: '申请日期', key: 'applyDate', align: 'center', minWidth: 70,},
             {title: '请假类别', key: 'applyType', align: 'center', minWidth: 50,},
-            {title: '请假开始时间', key: 'startDate', align: 'center', minWidth: 120,},
-            {title: '请假结束时间', key: 'endDate', align: 'center', minWidth: 120,},
+            {title: '请假开始时间', key: 'startDate', align: 'center', minWidth: 120,sortable: true},
+            {title: '请假结束时间', key: 'endDate', align: 'center', minWidth: 120,sortable: true},
             {title: '流程状态', key: 'status', minWidth: 60,
+              filters: [],
               render: (h, data) =>
                 <div>
                   <span><Badge status= {this.statusType(data.row.status)}></Badge>{this.statusText(data.row.status)}</span>
@@ -107,29 +101,12 @@ export default {
             },
           ],
            btns: [
-                // {text: '新增', cb: (obj) => this.test(obj)},
+              // {text: '新增', cb: (obj) => this.test(obj)},
             ],
         },
       },
       selectedData: [],
-      data: [
-        {id: '1000000817473894', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 0,},
-        {id: '1000000004090937', applicant: '张例', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 0,},
-        {id: '1000000306200045', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-        {id: '1000002068180211', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 0,},
-        {id: '1000000071351323', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-        {id: '1000002099899749', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-        {id: '1000001932239144', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-        {id: '1000001639785605', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-        {id: '1000000938054985', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-09-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-        {id: '1000000952010167', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-06-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-        {id: '1000001812678381', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-        {id: '1000000505501496', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-        {id: '1000001806357366', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-        {id: '1000001623789801', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-        {id: '1000001853649225', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-        {id: '1000001932567445', applicant: '张闯', department: '行政部', position: 'HR', applyDate: '2021-10-10', applyType: '0', startDate: '2021-11-06 09:40:49', endDate: '2021-11-13 16:21:00', reason:'家里有事需要请假', phone:'13435677859', principal:'李烈', status: 1,},
-      ],
+      data: [],
       applyShow: false,
       detailsShow: false,
       applyContent: {
@@ -155,7 +132,6 @@ export default {
   methods: {
     async test1() {
      const {data} = await this.$store.dispatch('business/getApplyleaveList',{})
-      console.log('data :>> ', data);
     },
     addApply() {
       this.applyShow = true
@@ -167,14 +143,11 @@ export default {
         return statusMap[type].text
       },
     test(obj) {
-      console.log('obj :>> ', obj);
     },
     action(name, {row}) {
-      console.log('name :>> ', name);
       if(name === 'details') {
-        // this.detailsShow = true
-        // this.applyDetails = row
-        console.log('row :>> ', row);
+        this.detailsShow = true
+        this.applyDetails = row
       }
     }
   },
@@ -205,16 +178,5 @@ export default {
       width: 16%;
     }
   }
-}
-.form-item {
-  line-height: 55px;
-  margin: 5px 0px;
-}
- /deep/ .ivu-form-item {
-    // margin-bottom: 24px;
-    vertical-align: top;
-    zoom: 1;
-     line-height: 55px; 
-    margin: 5px 0px;
 }
 </style>

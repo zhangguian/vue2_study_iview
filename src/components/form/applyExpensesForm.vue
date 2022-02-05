@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-11-07 10:51:47
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-11-07 14:07:43
--->
+
 <template>
   <div>
     <div style="text-align: right;margin-right: 10px" v-if="printShow">
@@ -99,7 +92,7 @@
                   <td colspan="2">
                     <Row>
                       <Col :span="24">
-                        <FormItem :prop="applyContent.startDate.toString()">
+                        <FormItem :prop="applyContent.startDate">
                           <DatePicker type="datetime" v-model="applyContent.startDate"></DatePicker>
                         </FormItem>
                       </Col>
@@ -109,7 +102,7 @@
                   <td colspan="2">
                     <Row>
                       <Col :span="24">
-                        <FormItem :prop="applyContent.endDate.toString()">
+                        <FormItem :prop="applyContent.endDate">
                           <DatePicker type="datetime" v-model="applyContent.endDate"></DatePicker>
                         </FormItem>
                       </Col>

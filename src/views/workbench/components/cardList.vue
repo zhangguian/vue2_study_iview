@@ -1,11 +1,4 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: zhangguian
- * @Date: 2021-10-27 12:53:23
- * @LastEditors: zhangguian
- * @LastEditTime: 2021-12-02 22:04:33
--->
+
 <template>
   <!-- <div > -->
     <div class="lits-item" :style="`maxHeight: ${maxHeight}px`">
@@ -44,7 +37,7 @@ export default {
     },
     maxHeight: {
       type: Number,
-      default: 100
+      default: 200
     },
     time: {
       type: String
@@ -79,7 +72,6 @@ export default {
     //     } else {
     //       return item
     //     }
-    //     console.log('item :>> ', item);
     //   })
     //   return d
     // },
