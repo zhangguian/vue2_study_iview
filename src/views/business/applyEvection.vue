@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <a-table  ref="atable" action="business/getEvectionList" :config="config" size="small" :selected.sync="selectedData">
+    <a-table  ref="atable" action="business/getEvectionList" :config="config" :selected.sync="selectedData">
       <template #btn >
         <i-button type="primary" icon="md-add" style="margin: 10px 0px" @click="addApply">新增</i-button>
       </template>

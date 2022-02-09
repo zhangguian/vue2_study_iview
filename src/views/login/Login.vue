@@ -4,8 +4,10 @@
     <!-- <img src="'/src/assets/login_bg.jpg" alt=""> -->
     <div class="login-box">
       <div class="login-title">
-        <div>welcome</div>  
-        <div>ANJING JJJ 系统</div>
+       <router-link to="/">
+            <!-- <img src="@/assest/images/common/logo.png" alt="logo" class="logo" /> -->
+            <span class="title">ANJING学习管理系统</span>
+          </router-link>
       </div>
       <div class="login-content">
       <Form>
@@ -67,11 +69,12 @@ export default {
       let SLIDER = 'slider'
       if(this.tabName == ACCOUNT) {
         let {username, password, inputCode} =  this.$refs.account.model
+        if(!username || !password) return this.$Message.error('请输入用户名或密码')
         let codeText = this.$refs.account.codeText
-        // if(inputCode != codeText){
-          // this.$Message.error('验证码错误！')
-        //   this.$refs.account.drawCanvas()
-        // } else {
+        if(inputCode != codeText){
+          this.$Message.error('验证码错误！')
+          this.$refs.account.drawCanvas()
+        } else {
           const {data, err} = await this.$store.dispatch('login/logintest',{username,password})
           console.log('data', data);
           console.log('data.code', data.code);
@@ -85,7 +88,7 @@ export default {
           } else {
             this.$Message.error(data.code)
           }
-        
+        }
 
       } else if(this.tabName == PHONE) {
 
@@ -107,21 +110,16 @@ export default {
   width: 100%;
   color: #fff;
   align-items: center;
-  background: url('../../assets/login_bg1.jpg') no-repeat 0 0;
+  background: #f5f5f5 url('../../assets/background.svg') no-repeat 0 0;
   background-size: 100% 100%;
   .login-box {
-    background: rgba(225,225,225, 0.2);
-    display: flex;
-    margin: 0px 80px;
-    align-items: center;
-    text-align: center;
-    border-radius: 8px;
-    position: absolute;
-    top: 60px;                           
+    margin: auto;
+    border-radius: 4px;                        
     .login-title {
-      width: 360px;
+      text-align: center;
+      margin: 8px 0px;
       font-size: 25px;
-      color: #fff;
+      color: #000;
     }
     .login-content {
       padding: 20px;

@@ -1,8 +1,7 @@
 
 <template>
   <div>
-    <a-table ref="atable" :data="data" action="task/getPendingTask" :config="config" :selected.sync="selectedData" size="small"></a-table>
-    <!-- <span>{{status | statusType}}</span> -->
+    <a-table ref="atable" :data="data" action="task/getPendingTask" :config="config" :selected.sync="selectedData"></a-table>
   </div>
 </template>
 
@@ -71,7 +70,7 @@ export default {
             {type: 'selection', align: 'center', width: 60, },
             {title: '任务ID', key: 'id', align: 'center', minWidth: 100,},
             {title: '任务名称', key: 'taskname', align: 'center', minWidth: 100,tooltip:true,},
-            {title: '任务描述', key: 'taskDesc', align: 'center', minWidth: 100,},
+            {title: '任务描述', key: 'taskDesc', align: 'center', minWidth: 100,tooltip:true,},
             {title: '发起人', key: 'initiator', align: 'center', minWidth: 100,},
             {title: '处理人', key: 'handler', align: 'center', minWidth: 100,},
             {title: '开始时间', key: 'start', align: 'center', minWidth: 100,},
@@ -86,7 +85,7 @@ export default {
               render: (h, data) => 
                 <template style="width: 100%; display: flex;justify-content: space-evenly;">
                   <i-button type="info" size="small" ghost onClick={() => this.details(data)}>详情</i-button>
-                  <i-button type="error" size="small" ghost onClick={() => this.deleOne(data)}>删除</i-button>
+                  <i-button type="warning" size="small" ghost onClick={() => this.deleOne(data)}>删除</i-button>
                 </template>
             },
           ],
