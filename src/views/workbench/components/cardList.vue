@@ -1,7 +1,7 @@
 
 <template>
   <!-- <div > -->
-    <div class="lits-item" :style="`maxHeight: ${maxHeight}px`">
+    <div class="lits-item" :style="`maxHeight: ${maxHeight}px`" @click="handleItem">
       <div class="name_status">
         <span class="name">{{title}}</span>
         <Tag v-if="isNot" :color="tagColor">{{this.$tools.changeShow(this.status, this.$c.proStatusList)}}</Tag>
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { color } from 'echarts';
 export default {
   name: 'IviewNotifylist',
   props: {
@@ -52,29 +51,6 @@ export default {
     time1() {
       return new Date(this.time).getTime() - 60 * 3 * 1000
     },
-    // tag() {
-    //    switch (Number(this.status)) {
-    //     case 0:  return '未开始'
-    //       break
-    //     case 1: return '马上到期' 
-    //       break
-    //     case 2: return '已耗时3天' 
-    //       break
-    //     case 3: return '进行中' 
-    //       break
-    //     default: break
-    //   }
-    // },
-    // proStatus() {
-    //   const d = this.$c.proStatusList.map(item => {
-    //     if(item.value == 3) {
-    //       item.lable = `已耗时${this.date}天`
-    //     } else {
-    //       return item
-    //     }
-    //   })
-    //   return d
-    // },
     tagColor() {
        switch (Number(this.status)) {
         case 0:  return 'blue'
@@ -93,7 +69,10 @@ export default {
   },
 
   methods: {
+    handleItem() {
+      this.$emit('handle-item');
     
+    }
   },
 };
 </script>
@@ -106,6 +85,9 @@ export default {
     transition: all .3s;
     border-bottom: 1px solid #f0f0f0;
     // max-height: 100px;
+    &:hover {
+      background-color: #eaf3fc;
+    }
   .name_status {
     display: flex;
     justify-content: space-between;

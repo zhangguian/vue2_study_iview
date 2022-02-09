@@ -27,9 +27,6 @@
 
 <script>
 import { NoData } from '_c/prompt'
-
-import request from '@/network/request.js'
-
 export default {
   name: 'IviewMessageIcon',
 

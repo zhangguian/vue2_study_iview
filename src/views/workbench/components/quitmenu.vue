@@ -7,7 +7,7 @@
           <use xlink:href="#icon-daiban" ></use>
         </svg>
         <Badge :count="messageUnreadCount" type="primary">
-            <div style="margin: 10px">项目待办</div>
+            <div style="margin: 10px">我的待办</div>
         </Badge>
       </div>
       <div class="quitmenu-item pointer" @click="approval">
@@ -49,10 +49,17 @@ export default {
 
   methods: {
     waitDone() {
+      this.$router.push({
+        name: 'pending_taskList_page'
+      })
     },
     approval() {
+      
     },
     myApplication() {
+      this.$router.push({
+        name: 'apply_leave_page'
+      })
     }
   },
 };

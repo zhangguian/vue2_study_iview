@@ -1,5 +1,6 @@
-import request from '../network/request'
+import request from './request'
 
 export default {
-  proAllList: (params,config) => request('post', '/proManagement/proAllList',params)
+  proAllList: (params,config) => request('post', '/pro/getproList',params),
+  delePro: (params,config) => request('post', '/pro/deleOnePro',params),
 }

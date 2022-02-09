@@ -69,21 +69,23 @@ export default {
         let {username, password, inputCode} =  this.$refs.account.model
         let codeText = this.$refs.account.codeText
         // if(inputCode != codeText){
-        //   this.$Message.error('验证码错误！')
+          // this.$Message.error('验证码错误！')
         //   this.$refs.account.drawCanvas()
         // } else {
-          const {data, err} = await this.$store.dispatch('login/loginAccount', {username, password})
-          if(data.data.code) {
+          const {data, err} = await this.$store.dispatch('login/logintest',{username,password})
+          console.log('data', data);
+          console.log('data.code', data.code);
+          if(data.code) {
             this.$Notice.success({title: '欢迎登录'})
-            window.sessionStorage.setItem('token', data.data.token)
+            window.sessionStorage.setItem('token', data.token)
             this.$router.push({
-              name: 'workbench_1_page',
+              name: 'workbench_page',
               query: {}
             })
           } else {
-            this.$Message.error(data.data.info || err)
+            this.$Message.error(data.code)
           }
-        // }
+        
 
       } else if(this.tabName == PHONE) {
 
@@ -99,7 +101,7 @@ export default {
 <style lang="less" scoped>
 .login {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-right: 20px;
   height: 100%;
   width: 100%;

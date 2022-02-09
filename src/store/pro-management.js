@@ -13,6 +13,9 @@ const mutations = {}
 const actions ={
   proAllList(context, params) {
     return api.proManagement.proAllList(params)
+  },
+  deleOnePro(context, params) {
+    return api.proManagement.delePro(params)
   }
 }
 export default {namespaced: true, state, mutations, actions}

@@ -1,13 +1,17 @@
 
 <template>
   <div>
-    <a-table action="business/getApplyleaveList" :config="config" size="small" :selected.sync="selectedData">
+    <a-table  ref="atable" action="business/getEvectionList" :config="config" size="small" :selected.sync="selectedData">
       <template #btn >
         <i-button type="primary" icon="md-add" style="margin: 10px 0px" @click="addApply">新增</i-button>
       </template>
     </a-table> 
-    <Modal v-model="applyShow" title="新增出差申请单" width="900">
-      <form-print :applyContent="applyContent"/>
+    <Modal v-model="applyShow" title="新增出差申请单" width="900"  @on-visible-change="addApplyMoal" footer-hide>
+      <form-print ref="addapplyform" :applyContent="applyContent"  @submit-apply="submitApply" @cancel="cancel"/>
+    </Modal>
+
+    <Modal v-model="detailsShow" title="出差申请单" width="900">
+      <form-print :applyContent="applyDetails" :readonly="true" :detailShow="false"/>
     </Modal>
   </div>
 </template>
@@ -41,7 +45,7 @@ export default {
       config: {
         form: {
           rule: [
-            {type: 'input', title: '出差人', field: 'applyReason', col: {span:8},props:{placeholder:"请输入请假原因", clearable: true,}},
+            {type: 'input', title: '出差人', field: 'applicant', col: {span:8},props:{placeholder:"请输入请假原因", clearable: true,}},
             {type: 'div', 
                 children: [
                   {type: 'i-button', field: 'search', props: {type: 'primary', icon:'ios-search',size:'default'}, children: ['查询'], emit: ['click'],col: {
@@ -66,27 +70,27 @@ export default {
         table: {
           columns: [
             {type: 'selection', align: 'center', width: 60, },
-            {title: '出差人', key: 'name', align: 'center', minWidth: 50,},
-            {title: '部门名称', key: 'department', align: 'center', minWidth: 50,tooltip:true,},
-            {title: '项目名称', key: 'project', align: 'center', minWidth: 70,},
-            {title: '目的地', key: 'destination', align: 'center', minWidth: 120,},
-            {title: '出发时间', key: 'startTime', align: 'center', minWidth: 120,},
+            {title: '出差人', key: 'applicant', align: 'center', minWidth: 50,},
+            {title: '出差事由', key: 'reason', align: 'center', minWidth: 120,tooltip:true,},
+            {title: '目的地', key: 'address', align: 'center', minWidth: 120,},
+            {title: '出发时间', key: 'startDate', align: 'center', minWidth: 120,},
             {title: '出差天数', key: 'day', align: 'center', minWidth: 50,},
             {title: '出行工具', key: 'TravelTool', align: 'center', minWidth: 50,},
-            {title: '流程状态', key: 'status', minWidth: 50,
+            {title: '流程状态', key: 'applyStatus', minWidth: 50,
               render: (h, data) =>
                 <div>
-                  <span><Badge status= {this.statusType(data.row.status)}></Badge>{this.statusText(data.row.status)}</span>
+                  <span><Badge status= {this.statusType(data.row.applyStatus)}></Badge>{this.statusText(data.row.applyStatus)}</span>
                 </div>
             },
             {title: '操作栏', key: 'action', minWidth: 80, align: 'center',
               render: (h, data) => 
                 <template style="width: 100%; display: flex;justify-content: space-evenly;">
-                  <Dropdown>
+                  <Dropdown onOn-click={(val) => this.action(val, data)}>
                     <a href="javascript:void(0)">更多<Icon type="ios-arrow-down"></Icon></a>
                     <DropdownMenu slot="list">
-                      <DropdownItem>详情</DropdownItem>
+                      <DropdownItem name="details">详情</DropdownItem>
                       <DropdownItem>审批进度</DropdownItem>
+                      <DropdownItem name="deleOne">删除</DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
                 </template>
@@ -98,30 +102,14 @@ export default {
         },
       },
       selectedData: [],
-      data: [
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 0,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 0,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 0,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,},
-        { name: '张闯', department: '研发部', project: '飞天计划', destination: '天津市/市辖区/河西区', startTime: '2021-11-13 16:21:00',day: '3', TravelTool: '飞机',status: 1,}
-      ],
+      data: [],
       applyShow: false,
+      detailsShow: false,
       applyContent: {
-        id: '12133131',
-        applicant: '这是你',
-        department: '行政部',
-        position: 'HR',
+        id: '',
+        applicant: '',
+        department: '',
+        position: '',
         origin: '',
         address: '',
         startDate: '',
@@ -130,7 +118,8 @@ export default {
         amount: '',
         route: '',
         desc: '',
-      }
+      },
+      applyDetails: {},
     };
   },
 
@@ -146,9 +135,31 @@ export default {
       return statusMap[type].status
     },
     statusText (type) {
-        return statusMap[type].text
-      },
-    test(obj) {
+      return statusMap[type].text
+    },
+    async action(name, {row}) {
+      if(name === 'details') {
+        this.detailsShow = true
+        this.applyDetails = row
+      } else if (name === 'deleOne') {
+        console.log('{row.id}', row.id);
+        let {data, err} = await this.$store.dispatch('business/deleOneEvectionApply', {id: row.id})
+        console.log('data', data);
+        this.$refs.atable.getData()
+      }
+    },
+    async submitApply(obj) {
+      let {data, err} = await this.$store.dispatch('business/addEvectionApply', {...obj})
+       console.log('data', data);
+      this.applyShow = false
+      this.$Message.success(data.message)
+      this.$refs.atable.getData()
+    },
+    cancel(bool) {
+      this.applyShow = bool
+    },
+    addApplyMoal(bool) {
+      !bool && this.$refs.addapplyform.$refs['applyForm'].resetFields()
     }
   },
 };

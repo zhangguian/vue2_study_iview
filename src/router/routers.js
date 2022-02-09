@@ -53,7 +53,8 @@ export default [
         path: '/project_management/proDetail_page',
         name: '/project_management/proDetail_page',
         meta: { icon: 'md-notifications', hideInMenu: 'false' },
-        component: () => import('@/views/pro-management/proDetail/proDetail.vue')
+        component: () => import('@/views/pro-management/proDetail/proDetail.vue'),
+        children: []
       },
       {
         path: '/project_management/bugDetail_page',
@@ -66,6 +67,12 @@ export default [
         name: '/project_management/demandDetails_page',
         meta: { icon: 'md-notifications', hideInMenu: 'false' },
         component: () => import('@/views/pro-management/proDetail/components/demandDetails.vue')
+      },
+      {
+        path: '/project_management/my_work_page',
+        name: '/project_management/my_work_page',
+        meta: { icon: 'md-notifications', hideInMenu: 'false' },
+        component: () => import('@/views/pro-management/proDetail/components/myWork.vue')
       },
 
     ]

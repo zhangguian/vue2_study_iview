@@ -1,16 +1,16 @@
 
 <template>
   <div>
-    <a-table action="business/getApplyleaveList" :config="config" size="small" :selected.sync="selectedData">
+    <a-table ref="atable" action="business/getApplyleaveList"  :config="config" size="small" :selected.sync="selectedData">
       <template #btn >
         <i-button type="primary" icon="md-add" style="margin: 10px 0px" @click="addApply">新增</i-button>
       </template>
     </a-table> 
-    <Modal v-model="applyShow" title="新增请假申请单" width="900">
-      <form-print :applyContent="applyContent" />
+    <Modal v-model="applyShow" title="新增请假申请单" width="900" footer-hide @on-visible-change="addApplyMoal">
+      <form-print ref="addapplyform" :applyContent="applyContent" @submit-apply="submitApply" @cancel="cancel" />
     </Modal>
     <Modal v-model="detailsShow" title="请假申请单" width="900">
-      <form-print :applyContent="applyDetails" :readonly="readonly"/>
+      <form-print :applyContent="applyDetails" :readonly="readonly" :detailShow="false"/>
     </Modal>
   </div>
 </template>
@@ -45,11 +45,10 @@ export default {
       config: {
         form: {
           rule: [
-            {type: 'input', title: '名称', field: 'name', col: {span:8},props:{placeholder:"请输入名称", clearable: true,}},
+            {type: 'input', title: '申请人', field: 'applicant', col: {span:8},props:{placeholder:"请输入名称", clearable: true,}},
             {type: 'input', title: '申请日期', field: 'applyDate', col: {span:8},props:{placeholder:"请输入申请日期", clearable: true,}},
-            {type: 'input', title: '职务', field: 'position', col: {span:8},props:{placeholder:"请输入职务", clearable: true,}},
             {type: 'input', title: '请假类别', field: 'applyType', col: {span:8},props:{placeholder:"请输入请假类别", clearable: true,}},
-            {type: 'input', title: '请假原因', field: 'applyReason', col: {span:8},props:{placeholder:"请输入请假原因", clearable: true,}},
+            {type: 'input', title: '审批状态', field: 'applyStatus', col: {span:8},props:{placeholder:"请输入请假原因", clearable: true,}},
             {type: 'div', 
                 children: [
                   {type: 'i-button', field: 'search', props: {type: 'primary', icon:'ios-search',size:'default'}, children: ['查询'], emit: ['click'],col: {
@@ -75,16 +74,16 @@ export default {
           columns: [
             {type: 'selection', align: 'center', width: 60, },
             {title: '申请编号', key: 'id', align: 'center', minWidth: 120,},
-            {title: '名称', key: 'applicant', align: 'center', minWidth: 60,tooltip:true,},
-            {title: '申请日期', key: 'applyDate', align: 'center', minWidth: 70,},
+            {title: '申请人', key: 'applicant', align: 'center', minWidth: 60,tooltip:true,},
             {title: '请假类别', key: 'applyType', align: 'center', minWidth: 50,},
+            {title: '申请日期', key: 'applyDate', align: 'center', minWidth: 70,},
             {title: '请假开始时间', key: 'startDate', align: 'center', minWidth: 120,sortable: true},
             {title: '请假结束时间', key: 'endDate', align: 'center', minWidth: 120,sortable: true},
-            {title: '流程状态', key: 'status', minWidth: 60,
+            {title: '审批状态', key: 'applyStatus', minWidth: 60,
               filters: [],
               render: (h, data) =>
                 <div>
-                  <span><Badge status= {this.statusType(data.row.status)}></Badge>{this.statusText(data.row.status)}</span>
+                  <span><Badge status= {this.statusType(data.row.applyStatus)}></Badge>{this.statusText(data.row.applyStatus)}</span>
                 </div>
             },
             {title: '操作栏', key: 'action', minWidth: 100, align: 'center',
@@ -95,6 +94,7 @@ export default {
                     <DropdownMenu slot="list" >
                       <DropdownItem name="details">详情</DropdownItem>
                       <DropdownItem>审批进度</DropdownItem>
+                      <DropdownItem name="deleOne">删除</DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
                 </template>
@@ -110,7 +110,7 @@ export default {
       applyShow: false,
       detailsShow: false,
       applyContent: {
-        id: '12133131',
+        id: '',
         applicant: '',
         department: '',
         position: '',
@@ -126,13 +126,9 @@ export default {
   },
 
   mounted() {
-    this.test1()
   },
 
   methods: {
-    async test1() {
-     const {data} = await this.$store.dispatch('business/getApplyleaveList',{})
-    },
     addApply() {
       this.applyShow = true
     },
@@ -142,13 +138,29 @@ export default {
     statusText (type) {
         return statusMap[type].text
       },
-    test(obj) {
-    },
-    action(name, {row}) {
+
+    async action(name, {row}) {
       if(name === 'details') {
         this.detailsShow = true
         this.applyDetails = row
+      } else if (name === 'deleOne') {
+        let {data, err} = await this.$store.dispatch('business/deleOneApply', {id: row.id})
+        console.log('data', data);
+        this.$refs.atable.getData()
       }
+    },
+    async submitApply(obj) {
+      let {data, err} = await this.$store.dispatch('business/addApply', {...obj})
+      // debugger
+      this.applyShow = false
+      this.$Message.success(data.message)
+
+    },
+    cancel(bool) {
+      this.applyShow = bool
+    },
+    addApplyMoal(bool) {
+      !bool && this.$refs.addapplyform.$refs['applyForm'].resetFields()
     }
   },
 };

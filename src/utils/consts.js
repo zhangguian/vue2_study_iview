@@ -17,6 +17,12 @@ const obj = {
     { "value": 2, "label": "高" },
     { "value": 3, "label": "紧急" },
   ],
+  proStatus: [
+    { "value": 0, "label": "未开始" },
+    { "value": 1, "label": "进行中" },
+    { "value": 2, "label": "已完成" },
+    { "value": 3, "label": "已归档" },
+  ],
   severity: [
     { "value": 0, "label": "低" },
     { "value": 1, "label": "一般" },

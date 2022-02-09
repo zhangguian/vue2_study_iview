@@ -18,7 +18,8 @@ import './index.less'
 import './assets/iconfont/color_icon/iconfont.css';
 import './assets/iconfont/color_icon/iconfont.js';
 import utils from './utils'
-// import { VueAxios } from '@/network/request'
+
+import './mock'
 
 Vue.config.productionTip = false
 Vue.use(ViewUI);

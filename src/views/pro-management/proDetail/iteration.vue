@@ -1,6 +1,7 @@
 
 <template>
   <div>
+    <Spin size="large" fix v-if="loading"></Spin>
     <Row :gutter="10">
       <Col :span="5">
         <Card dis-hover :padding="10" style="height: 640px">
@@ -45,6 +46,8 @@
         </div>
       </Col>
     </Row>
+
+    <!-- 新建迭代 -->
     <Modal v-model="addIteraShow" title="新建迭代" width="620px">
       <div class="add-alert-box" style>
         <div class="add-alert-boder" style></div>
@@ -66,6 +69,9 @@ import ProBug from './components/proBug.vue'
 export default {
   name: 'IviewTest',
   components: { ProDemand, ProTask, ProBug },
+  props: {
+    proId: String
+  },
   data () {
     return {
       tab: this.$route.query['tab'] || 'ProDemand',
@@ -84,15 +90,18 @@ export default {
         submitBtn: false,
         resetBtn: false,
       },
+      loading: false
     };
   },
 
   mounted () {
+    console.log('first', this.proId)
 
   },
 
   methods: {
     changeItera (index) {
+      // alert('test')
       this.iteraCurrentIndex = index
     },
     addItera () {

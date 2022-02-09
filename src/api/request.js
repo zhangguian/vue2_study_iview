@@ -1,11 +1,10 @@
 
 import Vue from 'vue'
 import axios from 'axios'
-import qs from 'qs'
-import { VueAxios } from './axios'
+import store from '../store'
 import { Message } from 'view-design'
 // 创建 axios 实例
-const BASE_URL = process.env.VUE_APP_BASE_URL
+const BASE_URL =  process.env.VUE_APP_BASE_URL
 const request = axios.create({
   baseURL: BASE_URL,
   timeout: 9000, // 请求超时时间
@@ -64,7 +63,7 @@ const err = (error) => {
 
 // 请求拦截器
 request.interceptors.request.use(config => {
-
+  
   const token = window.sessionStorage.getItem('token')
   // 如果 token 存在
   // 让每个请求携带自定义 token 请根据实际情况自行修改
@@ -75,18 +74,9 @@ request.interceptors.request.use(config => {
 }, err)
 
 // 响应拦截器
-request.interceptors.response.use((response) => {
+request.interceptors.response.use(response => {
   return response.data
 }, err)
-
-// 挂载到vue实例上
-//  const installer = {
-//   vm: {},
-//   install (Vue, router = {}) {
-//     Vue.use(VueAxios, router, request)
-//   } 
-// }
-
 
 export default function (method, url, params, config = {}) {
   return request({
@@ -108,9 +98,4 @@ export default function (method, url, params, config = {}) {
       }
     })
 
-}
-
-export {
-  // installer as VueAxios,
-  // request as axios
 }

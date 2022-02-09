@@ -207,7 +207,7 @@ export default {
     },
     // 单击某一行时触发
     onRowClick (row, index) {
-      this.$emit('onRowClick', { row, index });
+      this.$emit('on-row-click', { row, index });
     },
     // 开启 highlight-row 后有效，当表格的当前行发生变化的时候会触发
     onCurrentChange (currentRow) {

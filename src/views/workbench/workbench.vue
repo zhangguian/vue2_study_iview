@@ -12,6 +12,7 @@
             :title="item.title"
             :status="item.status"
             :desc="item.desc"
+            @handle-item="taskDetail(item)"
           />
         </prom-c>
         <!-- 项目通知 -->
@@ -55,31 +56,25 @@ export default {
       isNot: false,
       isTisk: true,
       notifyList: [
-        { title: '好蛋计划', status: 0, desc: '任务需要在 2017-01-12 20:00 前启动' },
-        { title: '海岛营销系统', status: 2, desc: '指派竹尔于 2017-01-09 前完成更新并发布' },
-        { title: '美景东方计划', status: 0, desc: '冠霖提交于 2017-01-06，需在 2017-01-07 前完成代码变更任务' },
-        { title: '费劲系统', status: 3, desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
-        { title: '费劲系统', status: 1, desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
-        { title: '费劲系统', status: 1, desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
+        { id:'001', title: '好蛋计划', status: 0, desc: '任务需要在 2017-01-12 20:00 前启动' },
+        { id:'002', title: '海岛营销系统', status: 2, desc: '指派竹尔于 2017-01-09 前完成更新并发布' },
+        { id:'003', title: '美景东方计划', status: 0, desc: '冠霖提交于 2017-01-06，需在 2017-01-07 前完成代码变更任务' },
+        { id:'004', title: '费劲系统', status: 3, desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
+        { id:'005', title: '费劲系统', status: 1, desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
+        { id:'006', title: '费劲系统', status: 1, desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
       ],
       taskList: [
-        { title: '好蛋计划', status: 0, desc: '用户名称API更改' },
-        { title: '海岛营销系统', status: 2, desc: '指派竹尔于 2017-01-09 前完成更新并发布' },
-        { title: '美景东方计划', status: 0, desc: '冠霖提交于 2017-01-06，需在 2017-01-07 前完成代码变更任务' },
-        { title: '费劲系统', status: 1, desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
-        { title: '费劲系统', status: 3, desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
-        { title: '费劲系统', status: 1, desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
+        { id:'001', title: '好蛋计划', status: 0, desc: '用户名称API更改' },
+        { id:'002', title: '海岛营销系统', status: 2, desc: '指派竹尔于 2017-01-09 前完成更新并发布' },
+        { id:'003', title: '美景东方计划', status: 0, desc: '冠霖提交于 2017-01-06，需在 2017-01-07 前完成代码变更任务' },
+        { id:'004', title: '费劲系统', status: 1, desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
+        { id:'005', title: '费劲系统', status: 3, desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
+        { id:'006', title: '费劲系统', status: 1, desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
       ],
       pieValue: [
         { value: 70, name: '已完成' },
         { value: 20, name: '进行中' },
         { value: 10, name: '未完成' },
-      ],
-      newsList: [
-        { title: '国庆放假通知', time: '2021-10-31 11:08:07', desc: '国庆放假是时间为10月1日至10月7日，祝大家假期愉快' },
-        { title: '公司行政部团建日期更改', time: '2021-10-30 11:08:07', desc: '行政部团建日期原11月10日提前至11月7日' },
-        { title: '祝贺东方计划圆满成功', time: '2021-10-30 09:08:07', desc: '冠霖提交于 2017-01-06，需在 2017-01-07 前完成代码变更任务' },
-        { title: '祝贺书店计划正式开建', time: '2021-10-30 10:08:07', desc: '任务需要在 2017-01-12 20:00 前启动任务前启动' },
       ],
     };
   },
@@ -89,7 +84,12 @@ export default {
   },
 
   methods: {
-
+    taskDetail(item) {
+      console.log('item', item)
+       this.$router.push({
+       path: '/project_management/proDetail_page'
+     })
+    }
   },
 };
 </script>

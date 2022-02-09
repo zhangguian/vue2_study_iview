@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <a-table :data="data" :config="config" :selected.sync="selectedData" size="small"></a-table>
+    <a-table ref="atable" :data="data" action="task/getDoneTask" :config="config" :selected.sync="selectedData" size="small"></a-table>
     <!-- <span>{{status | statusType}}</span> -->
   </div>
 </template>
@@ -40,9 +40,9 @@ export default {
       config: {
         form: {
           rule: [
-            {type: 'input', title: '任务ID', field: 'procInstId', col: {span:8},props:{placeholder:"请输入", clearable: true,}},
-            {type: 'input', title: '任务名称', field: 'test1', col: {span:8},props:{placeholder:"请输入", clearable: true,}},
-            {type: 'input', title: '发起人', field: 'test2', col: {span:8},props:{placeholder:"请输入", clearable: true,}},
+            {type: 'input', title: '任务ID', field: 'id', col: {span:8},props:{placeholder:"请输入", clearable: true,}},
+            {type: 'input', title: '任务名称', field: 'taskname', col: {span:8},props:{placeholder:"请输入", clearable: true,}},
+            {type: 'input', title: '发起人', field: 'initiator', col: {span:8},props:{placeholder:"请输入", clearable: true,}},
             {type: 'div', 
                 children: [
                   {type: 'i-button', field: 'search', props: {type: 'primary', icon:'ios-search',size:'default'}, children: ['查询'], emit: ['click'],col: {
@@ -68,27 +68,19 @@ export default {
         table: {
           columns: [
             {type: 'selection', align: 'center', width: 60, },
-            {title: '任务ID', key: 'procDefName', align: 'center', minWidth: 100,},
-            {title: '任务名称', key: 'subject', align: 'center', minWidth: 100,tooltip:true,},
-            {title: '任务描述', key: 'creator', align: 'center', minWidth: 100,},
-            {title: '发起人', key: 'mainPrescription', align: 'center', minWidth: 100,},
-            {title: '处理人', key: 'mainPrescription', align: 'center', minWidth: 100,},
-            {title: '开始时间', key: 'mainPrescription', align: 'center', minWidth: 120,sortable: true},
-            {title: '结束时间', key: 'mainPrescription', align: 'center', minWidth: 120,sortable: true},
-            {title: '耗时', key: 'mainPrescription', align: 'center', minWidth: 100,},
-            {title: '流程状态', key: 'statusDesc', minWidth: 100,
-              render: (h, data) =>
-                <div>
-                  <span><Badge status= {this.statusType(data.row.status)}></Badge>{this.statusText(data.row.status)}</span>
-                </div>
-              
-            },
+            {title: '任务ID', key: 'id', align: 'center', minWidth: 100,},
+            {title: '任务名称', key: 'taskname', align: 'center', minWidth: 100,tooltip:true,},
+            {title: '任务描述', key: 'taskDesc', align: 'center', minWidth: 100,},
+            {title: '发起人', key: 'initiator', align: 'center', minWidth: 100,},
+            {title: '处理人', key: 'handler', align: 'center', minWidth: 100,},
+            {title: '开始时间', key: 'start', align: 'center', minWidth: 120,sortable: true},
+            {title: '结束时间', key: 'end', align: 'center', minWidth: 120,sortable: true},
             // {title: '创建时间', key: 'createTime', align: 'center', minWidth: 120,},
             {title: '操作栏', key: 'action', minWidth: 180, align: 'center',
               render: (h, data) => 
                 <template style="width: 100%; display: flex;justify-content: space-evenly;">
                   <i-button type="info" size="small" ghost>详情</i-button>
-                  <i-button type="error" size="small" ghost>删除</i-button>
+                  <i-button type="error" size="small" ghost onClick={() => this.deleOne(data)}>删除</i-button>
                 </template>
             },
           ],
@@ -107,23 +99,25 @@ export default {
   computed: {
     },
   methods: {
+  //刷新数据
+    refreshTable() {
+      this.ModalShow = false
+      this.$refs.atable.getData()
+    },
     statusType(type) {
       return statusMap[type].status
     },
     statusText (type) {
         return statusMap[type].text
       },
-    test(obj) {
+    async deleOne({row}) {
+      let {data, err} = await this.$store.dispatch('task/deleOneDoneTask', {id: row.id})
+      console.log(data)
+      if(data) {
+        this.refreshTable()
+      }
     }
   },
-  // filters: {
-  //   statusType () {
-  //     return statusMap[3].status
-  //   },
-  //   statusText (type) {
-  //     return statusMap[type].text
-  //   }
-  // },
 };
 </script>
 

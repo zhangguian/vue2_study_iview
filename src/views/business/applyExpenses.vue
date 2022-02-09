@@ -85,7 +85,7 @@ export default {
             {title: '流程状态', key: 'status', minWidth: 50,
               render: (h, data) =>
                 <div>
-                  <span><Badge status= {this.statusType(data.row.status)}></Badge>{this.statusText(data.row.status)}</span>
+                  {/*<span><Badge status= {this.statusType(data.row.status)}></Badge>{this.statusText(data.row.status)}</span> */}
                 </div>
             },
             {title: '操作栏', key: 'action', minWidth: 80, align: 'center',
