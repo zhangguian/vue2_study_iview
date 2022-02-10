@@ -18,7 +18,7 @@
       <Layout>
         <Header class="header-con">
           <header-bar>
-            <user :message-unread-count="unreadeCount" :user-avatar="userAvatar" />
+            <user :message-unread-count="unreadeCount" :user-avatar="userInfo.avatar" />
             <message-icon></message-icon>
           </header-bar>
         </Header>
@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       unreadeCount: 2,
-      userAvatar: require('@/assets/avatar.jpg')
+      userInfo: JSON.parse(localStorage.getItem('userInfo'))
     };
   },
   computed: {

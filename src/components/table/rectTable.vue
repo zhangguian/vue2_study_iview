@@ -9,7 +9,6 @@
       search clearable 
       @on-enter="handleSearch"
       @on-clear="handleClear"
-      @on-change="handleChange"
       />
     </div>
     <Spin size="large" fix v-if="loading"></Spin>

@@ -4,83 +4,85 @@
     <!-- <img src="'/src/assets/login_bg.jpg" alt=""> -->
     <div class="login-box">
       <div class="login-title">
-       <router-link to="/">
-            <!-- <img src="@/assest/images/common/logo.png" alt="logo" class="logo" /> -->
-            <span class="title">ANJING学习管理系统</span>
-          </router-link>
+        <router-link to="/">
+          <!-- <img src="@/assest/images/common/logo.png" alt="logo" class="logo" /> -->
+          <span class="title">ANJING学习管理系统</span>
+        </router-link>
       </div>
       <div class="login-content">
-      <Form>
-        <Tabs @on-click="getLoginType">
-          <TabPane label="账号密码登录" name="account">
-            <login-account ref="account"></login-account>
-          </TabPane>
-          <TabPane label="手机号登录" name="phone">
-            <login-phone ref="phone"></login-phone>
-          </TabPane>
-          <TabPane label="滑块登录" name="slider">
-            <login-slider  ref="slider"></login-slider>
-          </TabPane>
-        </Tabs>
-         
-        <FormItem>
-          <div style="color: #515a6e; text-align: left">
-            <Checkbox v-model="single">自动登录</Checkbox>
-          </div>
-        </FormItem>
-        <FormItem class="login-item">
-          <Button type="primary" class="login-btn" @click="loginSubmit" >登 录</Button>
-        </FormItem>
-      </Form>
-      </div>  
+        <Form>
+          <Tabs @on-click="getLoginType">
+            <TabPane label="账号密码登录" name="account">
+              <login-account ref="account"></login-account>
+            </TabPane>
+            <TabPane label="手机号登录" name="phone">
+              <login-phone ref="phone"></login-phone>
+            </TabPane>
+            <TabPane label="滑块登录" name="slider">
+              <login-slider ref="slider"></login-slider>
+            </TabPane>
+          </Tabs>
+
+          <FormItem>
+            <div style="color: #515a6e; text-align: left">
+              <Checkbox v-model="single">自动登录</Checkbox>
+            </div>
+          </FormItem>
+          <FormItem class="login-item">
+            <Button type="primary" class="login-btn" @click="loginSubmit">登 录</Button>
+          </FormItem>
+        </Form>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import LoginAccount from './LoginAccount.vue'
-  import LoginPhone from './LoginPhone.vue'
-  import LoginSlider from './LoginSlider.vue'
+import LoginAccount from './LoginAccount.vue'
+import LoginPhone from './LoginPhone.vue'
+import LoginSlider from './LoginSlider.vue'
+import { mapState } from 'vuex'
 export default {
   name: 'IviewLogin',
 
-  components: { LoginAccount,LoginPhone, LoginSlider },
+  components: { LoginAccount, LoginPhone, LoginSlider },
 
-  directives: {  },
-
-  data() {
+  data () {
     return {
       tabName: 'account' || '',
       single: true
     };
   },
 
-  mounted() {
+  mounted () {
   },
-  created() {
+  created () {
   },
   methods: {
-    getLoginType(name) {
+    getLoginType (name) {
       this.tabName = name
     },
-   async loginSubmit() {
+    async loginSubmit () {
       let ACCOUNT = 'account'
       let PHONE = 'phone'
       let SLIDER = 'slider'
-      if(this.tabName == ACCOUNT) {
-        let {username, password, inputCode} =  this.$refs.account.model
-        if(!username || !password) return this.$Message.error('请输入用户名或密码')
+      if (this.tabName == ACCOUNT) {
+        let { username, password, inputCode } = this.$refs.account.model
+        if (!username || !password) return this.$Message.error('请输入用户名或密码')
         let codeText = this.$refs.account.codeText
-        if(inputCode != codeText){
+        if (inputCode != codeText) {
           this.$Message.error('验证码错误！')
           this.$refs.account.drawCanvas()
         } else {
-          const {data, err} = await this.$store.dispatch('login/logintest',{username,password})
+          const { data, err } = await this.$store.dispatch('login/logintest', { username, password })
           console.log('data', data);
-          console.log('data.code', data.code);
-          if(data.code) {
-            this.$Notice.success({title: '欢迎登录'})
-            window.sessionStorage.setItem('token', data.token)
+          const {tokenList, member} = data.result
+          console.log('data.code', member);
+          if (data.code) {
+            this.$Notice.success({ title: '欢迎登录' })
+            window.localStorage.setItem('token', tokenList.accessToken)
+            window.localStorage.setItem('userInfo', JSON.stringify(member))
+            this.$store.commit('login/SET_LOGGED', {tokenList, userInfo: member});
             this.$router.push({
               name: 'workbench_page',
               query: {}
@@ -90,12 +92,12 @@ export default {
           }
         }
 
-      } else if(this.tabName == PHONE) {
+      } else if (this.tabName == PHONE) {
 
-      } else if(this.tabName == SLIDER){
+      } else if (this.tabName == SLIDER) {
 
       }
-     
+
     }
   },
 };
@@ -110,11 +112,11 @@ export default {
   width: 100%;
   color: #fff;
   align-items: center;
-  background: #f5f5f5 url('../../assets/background.svg') no-repeat 0 0;
+  background: #f5f5f5 url("../../assets/background.svg") no-repeat 0 0;
   background-size: 100% 100%;
   .login-box {
     margin: auto;
-    border-radius: 4px;                        
+    border-radius: 4px;
     .login-title {
       text-align: center;
       margin: 8px 0px;
@@ -135,7 +137,6 @@ export default {
           margin: auto;
         }
       }
-      
     }
   }
 }

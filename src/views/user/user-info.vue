@@ -19,12 +19,9 @@ export default {
   name: 'IviewUserInfo',
 
   components: { InfoCard, Editor },
-
-  directives: {  },
-
   data() {
     return {
-      
+     
     };
   },
 

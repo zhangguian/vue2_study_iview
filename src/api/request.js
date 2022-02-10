@@ -64,7 +64,7 @@ const err = (error) => {
 // 请求拦截器
 request.interceptors.request.use(config => {
   
-  const token = window.sessionStorage.getItem('token')
+  const token = window.localStorage.getItem('token')
   // 如果 token 存在
   // 让每个请求携带自定义 token 请根据实际情况自行修改
   if (token) {

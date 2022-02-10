@@ -110,12 +110,17 @@ export default {
     statusText (type) {
         return statusMap[type].text
       },
-    async deleOne({row}) {
-      let {data, err} = await this.$store.dispatch('task/deleOneDoneTask', {id: row.id})
-      console.log(data)
-      if(data) {
-        this.refreshTable()
-      }
+     deleOne({row}) {
+      this.$Modal.confirm({
+          title: '确认操作',
+          content: '你确认要删除吗？',
+          onOk: async () => {
+            let {data, err} = await this.$store.dispatch('task/deleOneDoneTask', {id: row.id})
+            if(data) {
+              this.refreshTable()
+            }
+          }
+        })
     }
   },
 };

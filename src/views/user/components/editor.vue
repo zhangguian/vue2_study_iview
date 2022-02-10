@@ -3,7 +3,7 @@
   <Card :bordered="false" style="height: 100%">
     <Tabs value="baseInfo">
       <TabPane label="基本信息" name="baseInfo">
-        <base-info />
+        <base-info :userInfo="userInfo"/>
       </TabPane>
       <TabPane label="标签二" name="name2">标签二的内容</TabPane>
     </Tabs>
@@ -12,6 +12,7 @@
 
 <script>
 import BaseInfo from './baseInfo.vue'
+import { mapState } from 'vuex'
 export default {
   name: 'IviewEditor',
 
@@ -19,12 +20,13 @@ export default {
 
   data() {
     return {
-     
+     userInfo: JSON.parse(localStorage.getItem('userInfo'))
     };
   },
-
-  mounted() {
+  computed: {
     
+  },
+  mounted() {
   },
 
   methods: {

@@ -7,13 +7,13 @@
           <rect-table ref="proList" action="proManagement/proAllList"  size="small" @handlePro="handlePro" @dele="handleDele" @editor="handleEditor" />
         </TabPane>
         <TabPane label="进行中" >
-          <rect-table :data="data" action="proManagement/proAllList" flag="0" size="small" @handlePro="handlePro" />
+          <rect-table :data="data" action="proManagement/proAllList" flag="1" size="small" @handlePro="handlePro" />
         </TabPane>
         <TabPane label="已完成">
-          <rect-table :data="data"  action="proManagement/proAllList" flag="1" size="small" @handlePro="handlePro"/>
+          <rect-table :data="data"  action="proManagement/proAllList" flag="2" size="small" @handlePro="handlePro"/>
         </TabPane>
         <TabPane label="未开始">
-          <rect-table :data="data" action="proManagement/proAllList" flag="2" size="small" @handlePro="handlePro"/>
+          <rect-table :data="data" action="proManagement/proAllList" flag="0" size="small" @handlePro="handlePro"/>
         </TabPane>
         <TabPane label="已归档">
           <rect-table :data="data" action="proManagement/proAllList" flag="3" size="small" @handlePro="handlePro"/>

@@ -144,9 +144,15 @@ export default {
         this.detailsShow = true
         this.applyDetails = row
       } else if (name === 'deleOne') {
-        let {data, err} = await this.$store.dispatch('business/deleOneApply', {id: row.id})
-        console.log('data', data);
-        this.$refs.atable.getData()
+        this.$Modal.confirm({
+          title: '确认操作',
+          content: '你确认要删除吗？',
+          onOk: async () => {
+            let {data, err} = await this.$store.dispatch('business/deleOneApply', {id: row.id})
+            this.$refs.atable.getData()
+          }
+        })
+      
       }
     },
     async submitApply(obj) {

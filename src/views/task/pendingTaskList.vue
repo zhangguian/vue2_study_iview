@@ -117,13 +117,17 @@ export default {
       },
     test(obj) {
     },
-    async deleOne({row}) {
-      console.log('row', row);
-      let {data} = await this.$store.dispatch('task/deleOnePendingTask', {id: row.id})
-      console.log(data)
-      if(data) {
-        this.refreshTable()
-      }
+     deleOne({row}) {
+      this.$Modal.confirm({
+          title: '确认操作',
+          content: '你确认要删除吗？',
+          onOk: async () => {
+              let {data} = await this.$store.dispatch('task/deleOnePendingTask', {id: row.id})
+              if(data) this.refreshTable()
+
+          }
+        })
+     
     },
     details ({row}) {
       console.log('row', row);

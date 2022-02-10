@@ -300,7 +300,8 @@ export function randomNum (min, max) {
   * @return {[Array]} [随机数组]
   */
 export function randomStr () {
-  const str = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789";
+  // const str = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789";
+  const str = "0123456789";
   return str.split("").sort(function () {
     return Math.random() - 0.5
   })

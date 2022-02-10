@@ -1,8 +1,31 @@
 
 import api from '../api/index'
 
-const state = {}
-const mutations = {}
+const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : ''
+const state = {
+  // 判断登录状态
+  logged: !!userInfo,
+  userInfo,
+  loading: false,
+  tokenList:[]
+}
+const mutations = {
+  SET_LOGGED(state, {tokenList, userInfo}) {
+    state.logged = true,
+    state.userInfo = userInfo,
+    state.tokenList = tokenList
+  },
+  SET_USERINFO(state, data) {
+    state.userInfo = data
+  },
+  SET_LOGINOUT(state) {
+    state.logged = false,
+    state.userInfo = null
+  },
+  LOADING(state, status) {
+    state.logged = status
+  }
+}
 const actions ={
   loginAccount(context, params) {
     return api.login.loginAccount(params)

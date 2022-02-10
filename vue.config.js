@@ -10,6 +10,7 @@ const BASE_URL = process.env.ENV = 'development' ? '/' : './'
 
 module.exports = {
   publicPath: BASE_URL,
+  productionSourceMap: false,
   // 如果你不需要使用eslint，把lintOnSave设为false即可
   lintOnSave: false,
   chainWebpack: config => {
