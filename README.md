@@ -4,7 +4,7 @@
 
 ## 实现效果
 
-![](image/README/1644400132854.png)
+![](https://github.com/zhangguian/vue2_study_iview/blob/master/image/README/1644400131552.png)
 ![](image/README/1644400184451.png)
 ![](image/README/1644400224917.png)
 ![](image/README/1644400242106.png)
