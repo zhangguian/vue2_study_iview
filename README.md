@@ -2,9 +2,8 @@
 
 基于 vue2+iview 研发的项目敏捷性管理
 ## 说明
-```
+
 自己瞎鼓捣的一个后台管理系统，结合自己学的技术所写。采用vue2，vue3 + iview + element-puls + mockjs开发。其中包括“用户登录”、“请假申请”、“出差申请”、“我的待办”、“我的已办”“工作台”、“开发项目管理”，“项目任务需求列表”等功能页面。
-```
 
 ## 效果图
 ![工作台](https://github.com/zhangguian/vue2_study_iview/blob/master/images/01.png)
