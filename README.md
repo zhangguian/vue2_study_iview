@@ -1,14 +1,13 @@
 # vue2_study_iview
 
 基于 vue2+iview 研发的项目敏捷性管理
-
-
-
-## 实现效果
-
+**效果图** 
 ![工作台](https://github.com/zhangguian/vue2_study_iview/blob/master/images/01.png)
+
 ![项目管理](https://github.com/zhangguian/vue2_study_iview/blob/master/images/02.png)
+
 ![项目任务详情](https://github.com/zhangguian/vue2_study_iview/blob/master/images/03.png)
+
 ![项目仪表盘](https://github.com/zhangguian/vue2_study_iview/blob/master/images/04.png)
 ![项目需求详情](https://github.com/zhangguian/vue2_study_iview/blob/master/images/05.png)
 ![我的待办](https://github.com/zhangguian/vue2_study_iview/blob/master/images/06.png)
