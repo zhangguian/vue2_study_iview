@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       unreadeCount: 2,
-      userInfo: JSON.parse(localStorage.getItem('userInfo'))
+      userInfo: JSON.parse(sessionStorage.getItem('userInfo'))
     };
   },
   computed: {

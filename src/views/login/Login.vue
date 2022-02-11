@@ -80,8 +80,8 @@ export default {
           console.log('data.code', member);
           if (data.code) {
             this.$Notice.success({ title: '欢迎登录' })
-            window.localStorage.setItem('token', tokenList.accessToken)
-            window.localStorage.setItem('userInfo', JSON.stringify(member))
+            window.sessionStorage.setItem('token', tokenList.accessToken)
+            window.sessionStorage.setItem('userInfo', JSON.stringify(member))
             this.$store.commit('login/SET_LOGGED', {tokenList, userInfo: member});
             this.$router.push({
               name: 'workbench_page',

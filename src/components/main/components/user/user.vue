@@ -45,7 +45,7 @@ export default {
 
   methods: {
     logout () {
-      window.localStorage.clear()
+      window.sessionStorage.clear()
       this.$Notice.info({title: '退出登录'})
       this.$router.push({
         name: 'login'

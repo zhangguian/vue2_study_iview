@@ -23,7 +23,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const LOGIN_PAGE_NAME = 'login'
-  const token = window.localStorage.getItem('token')
+  const token = window.sessionStorage.getItem('token')
   iView.LoadingBar.start()
   if (!token && to.name !== LOGIN_PAGE_NAME) {
     // 未登录且要跳转的页面不是登录页
@@ -42,7 +42,7 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-router.afterEach((to,from) => {
+router.afterEach((to, from) => {
   iView.LoadingBar.finish()
   window.scrollTo(0, 0);
 })

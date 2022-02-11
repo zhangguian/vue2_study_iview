@@ -25,11 +25,9 @@
 <script>
 export default {
   name: 'IviewInfocard',
-
   data() {
     return {
-      userInfo: JSON.parse(localStorage.getItem('userInfo')),
-
+      userInfo: JSON.parse(sessionStorage.getItem('userInfo')),
     };
   },
 
